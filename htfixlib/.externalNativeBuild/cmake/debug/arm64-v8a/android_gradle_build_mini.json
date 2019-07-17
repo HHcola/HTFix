@@ -1,0 +1,16 @@
+{
+  "buildFiles": [
+    "E:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "E:\\workspace\\android\\android-sdk-windows\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\.externalNativeBuild\\cmake\\debug\\arm64-v8a --target clean"
+  ],
+  "libraries": {
+    "sandhook-Debug-arm64-v8a": {
+      "artifactName": "sandhook",
+      "buildCommand": "E:\\workspace\\android\\android-sdk-windows\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\.externalNativeBuild\\cmake\\debug\\arm64-v8a --target sandhook",
+      "abi": "arm64-v8a",
+      "output": "E:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a\\libsandhook.so"
+    }
+  }
+}

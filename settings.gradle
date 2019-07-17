@@ -1,0 +1,2 @@
+include ':app', ':htfixlib', ':annotation'
+rootProject.name='HTFix'

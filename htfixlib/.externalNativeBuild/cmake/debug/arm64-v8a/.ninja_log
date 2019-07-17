@@ -1,0 +1,10 @@
+# ninja log v5
+14	1222	0	CMakeFiles/sandhook.dir/base/utils.cpp.o	51ea43d42acecbb5
+31	1223	0	CMakeFiles/sandhook.dir/fake/HideApi.cpp.o	d01345670225139f
+299	1224	0	CMakeFiles/sandhook.dir/fake/dlfcn_nougat.cpp.o	635635011693f12
+701	1225	0	CMakeFiles/sandhook.dir/trampoline/trampoline.cpp.o	121773dbe56b7271
+400	1256	0	CMakeFiles/sandhook.dir/fake/ElfUtil.cpp.o	90e5a98be3759320
+686	1273	0	CMakeFiles/sandhook.dir/art/ArtMethodOffSet.cpp.o	82d66ef3e216952a
+994	1311	0	CMakeFiles/sandhook.dir/hook/MethodHook.cpp.o	3fc57f55ad061f5c
+1210	1370	0	CMakeFiles/sandhook.dir/art/ArtMethod.cpp.o	3987b9000ead956b
+4	965	0	CMakeFiles/sandhook.dir/HTFixHook.cpp.o	2592b5bc3d2f77ae

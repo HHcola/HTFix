@@ -1,0 +1,19 @@
+# ninja log v5
+2	1163	0	CMakeFiles/htfix.dir/HTFixHook.cpp.o	4ecdcfec122bc7ca
+19	1206	0	CMakeFiles/htfix.dir/base/utils.cpp.o	c1c1fd25155268ea
+35	1223	0	CMakeFiles/htfix.dir/fake/HideApi.cpp.o	fedd84787bf7fd59
+264	1444	0	CMakeFiles/htfix.dir/fake/dlfcn_nougat.cpp.o	95060afff7f4554e
+457	1646	0	CMakeFiles/htfix.dir/fake/ElfUtil.cpp.o	80ad9c051ba2c421
+1164	1672	0	CMakeFiles/htfix.dir/insts/insts_arm64.cpp.o	43943b1bf03c95e3
+1206	1694	0	CMakeFiles/htfix.dir/trampoline/arch/arm32.S.o	31853ea3b3378066
+1223	1705	0	CMakeFiles/htfix.dir/trampoline/arch/arm64.S.o	6bb59394efdc2637
+1103	1803	0	CMakeFiles/htfix.dir/insts/insts_arm32.cpp.o	d07691cf72fd0532
+789	1820	0	CMakeFiles/htfix.dir/art/art_compiler_options.cpp.o	c17ef17c406a897d
+893	1837	0	CMakeFiles/htfix.dir/art/cast_compiler_options.cpp.o	a3971be9498ac573
+1444	1854	0	CMakeFiles/htfix.dir/hook/MethodHook.cpp.o	11ca8b7d5e66f68b
+671	1867	0	CMakeFiles/htfix.dir/art/ArtMethod.cpp.o	6609de19dda24c1e
+772	1886	0	CMakeFiles/htfix.dir/art/ArtMethodOffSet.cpp.o	7e545677cb8c9885
+1646	2383	0	CMakeFiles/htfix.dir/trampoline/TrampolineManager.cpp.o	d586b0ca189e92e1
+2383	2550	0	E:/workspace/android/github-source/hook/HTFix/htfixlib/build/intermediates/cmake/debug/obj/armeabi-v7a/libhtfix.so	92e99ef4a5e24faa
+3	938	0	CMakeFiles/htfix.dir/art/ArtMethodOffSet.cpp.o	7e545677cb8c9885
+938	1213	0	E:/workspace/android/github-source/hook/HTFix/htfixlib/build/intermediates/cmake/debug/obj/armeabi-v7a/libhtfix.so	92e99ef4a5e24faa

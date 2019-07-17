@@ -1,0 +1,21 @@
+[1/2] Building CXX object CMakeFiles/htfix.dir/art/ArtMethodOffSet.cpp.o
+In file included from E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\art\ArtMethodOffSet.cpp:5:
+In file included from E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\art/ArtMethodOffSet.h:8:
+E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\art/../base/cast.h:48:24: warning: implicit conversion of NULL constant to 'unsigned int' [-Wnull-conversion]
+                return NULL;
+                ~~~~~~ ^~~~
+                       0
+E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\art\ArtMethodOffSet.cpp:111:11: note: in instantiation of member function 'HTFix::IMember<art::mirror::ArtMethod, unsigned int>::get' requested here
+    class CastAccessFlag : public IMember<art::mirror::ArtMethod, uint32_t> {
+          ^
+In file included from E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\art\ArtMethodOffSet.cpp:5:
+In file included from E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\art/ArtMethodOffSet.h:8:
+E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\art/../base/cast.h:48:24: warning: implicit conversion of NULL constant to 'unsigned short' [-Wnull-conversion]
+                return NULL;
+                ~~~~~~ ^~~~
+                       0
+E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\art\ArtMethodOffSet.cpp:171:11: note: in instantiation of member function 'HTFix::IMember<art::mirror::ArtMethod, unsigned short>::get' requested here
+    class CastHotnessCount : public IMember<art::mirror::ArtMethod, uint16_t> {
+          ^
+2 warnings generated.
+[2/2] Linking CXX shared library E:\workspace\android\github-source\hook\HTFix\htfixlib\build\intermediates\cmake\debug\obj\armeabi-v7a\libhtfix.so

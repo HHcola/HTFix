@@ -1,0 +1,23 @@
+[1/4] Building CXX object CMakeFiles/sandhook.dir/HTFixHook.cpp.o
+[2/4] Building CXX object CMakeFiles/sandhook.dir/trampoline/trampoline.cpp.o
+[3/4] Building CXX object CMakeFiles/sandhook.dir/trampoline/TrampolineManager.cpp.o
+FAILED: E:\workspace\android\android-sdk-windows\ndk-bundle\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe  --target=aarch64-none-linux-android --gcc-toolchain=E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/windows-x86_64 --sysroot=E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot  -Dsandhook_EXPORTS -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/arm64-v8a/include -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot/usr/include/aarch64-linux-android -D__ANDROID_API__=21 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11 -MD -MT CMakeFiles/sandhook.dir/trampoline/trampoline.cpp.o -MF CMakeFiles\sandhook.dir\trampoline\trampoline.cpp.o.d -o CMakeFiles/sandhook.dir/trampoline/trampoline.cpp.o -c E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\trampoline\trampoline.cpp
+clang++.exe: error: no such file or directory: 'E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\trampoline\trampoline.cpp'
+clang++.exe: error: no input files
+FAILED: E:\workspace\android\android-sdk-windows\ndk-bundle\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe  --target=aarch64-none-linux-android --gcc-toolchain=E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/aarch64-linux-android-4.9/prebuilt/windows-x86_64 --sysroot=E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot  -Dsandhook_EXPORTS -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/arm64-v8a/include -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot/usr/include/aarch64-linux-android -D__ANDROID_API__=21 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11 -MD -MT CMakeFiles/sandhook.dir/trampoline/TrampolineManager.cpp.o -MF CMakeFiles\sandhook.dir\trampoline\TrampolineManager.cpp.o.d -o CMakeFiles/sandhook.dir/trampoline/TrampolineManager.cpp.o -c E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\trampoline\TrampolineManager.cpp
+In file included from E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\trampoline\TrampolineManager.cpp:6:
+E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\trampoline/../includes/lock.h:23:34: error: use of undeclared identifier 'suspendVM'
+        inline StopTheWorld()  { suspendVM(); }
+                                 ^
+E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\trampoline/../includes/lock.h:24:34: error: use of undeclared identifier 'resumeVM'
+        inline ~StopTheWorld() { resumeVM(); }
+                                 ^
+E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\trampoline\TrampolineManager.cpp:44:53: warning: format specifies type 'unsigned int' but the argument has type 'Size' (aka 'unsigned long') [-Wformat]
+                LOGW("found pc related inst: %x !", inst->bin());
+                                             ~~     ^~~~~~~~~~~
+                                             %zx
+E:\workspace\android\github-source\hook\HTFix\htfixlib\src\main\cpp\trampoline/../art/../base/base.h:16:64: note: expanded from macro 'LOGW'
+#define LOGW(...) __android_log_print(ANDROID_LOG_WARN,LOG_TAG,__VA_ARGS__)
+                                                               ^~~~~~~~~~~
+1 warning and 2 errors generated.
+ninja: build stopped: subcommand failed.

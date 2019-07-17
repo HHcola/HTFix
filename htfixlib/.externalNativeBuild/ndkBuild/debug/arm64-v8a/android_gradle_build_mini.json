@@ -1,0 +1,17 @@
+{
+  "buildFiles": [
+    "E:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\src\\main\\jni\\Android.mk",
+    "E:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\src\\main\\jni\\Application.mk"
+  ],
+  "cleanCommands": [
+    "E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dE:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dE:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\src\\main\\jni\\Application.mk APP_ABI\u003darm64-v8a NDK_ALL_ABIS\u003darm64-v8a NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003dE:/workspace/android/github-source/hook/HTFix/htfixlib/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dE:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\build\\intermediates\\ndkBuild\\debug\\lib clean"
+  ],
+  "libraries": {
+    "yahfa-debug-arm64-v8a": {
+      "artifactName": "yahfa",
+      "buildCommand": "E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dE:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dE:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\src\\main\\jni\\Application.mk APP_ABI\u003darm64-v8a NDK_ALL_ABIS\u003darm64-v8a NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-21 NDK_OUT\u003dE:/workspace/android/github-source/hook/HTFix/htfixlib/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003dE:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\build\\intermediates\\ndkBuild\\debug\\lib E:/workspace/android/github-source/hook/HTFix/htfixlib/build/intermediates/ndkBuild/debug/obj/local/arm64-v8a/libyahfa.so",
+      "abi": "arm64-v8a",
+      "output": "E:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\build\\intermediates\\ndkBuild\\debug\\obj\\local\\arm64-v8a\\libyahfa.so"
+    }
+  }
+}
