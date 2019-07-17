@@ -50,6 +50,7 @@ void initHideApi(JNIEnv* env) {
 
     env->GetJavaVM(&jvm);
 
+    // lib 64
     if (BYTE_POINT == 8) {
         if (SDK_INT >= ANDROID_Q && fileExits("/apex/com.android.runtime/lib64/libart.so")) {
             art_lib_path = "/apex/com.android.runtime/lib64/libart.so";
@@ -136,7 +137,7 @@ bool canCompile() {
     }
     JNIEnv *env;
     jvm->GetEnv(reinterpret_cast<void **>(&env), JNI_VERSION_1_6);
-    return getBooleanFromJava(env, "com/swift/sandhook/SandHookConfig",
+    return getBooleanFromJava(env, "com/htfixlib/utils/HTFixHookConfig",
                               "compiler");
 }
 

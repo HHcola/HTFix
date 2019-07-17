@@ -117,13 +117,13 @@ namespace HTFix {
         return exeSpace;
     }
 
-    HookTrampoline* TrampolineManager::installReplacementTrampoline(mirror::ArtMethod *originMethod,
+    HookTrampoline* TrampolineManager::installReplacementTrampoline(mirror::ArtMethod *targetMethod,
                                                                     mirror::ArtMethod *hookMethod,
                                                                     mirror::ArtMethod *backupMethod) {
         AutoLock autoLock(installLock);
 
-        if (trampolines.count(originMethod) != 0)
-            return getHookTrampoline(originMethod);
+        if (trampolines.count(targetMethod) != 0)
+            return getHookTrampoline(targetMethod);
         HookTrampoline* hookTrampoline = new HookTrampoline();
         ReplacementHookTrampoline* replacementHookTrampoline = nullptr;
         CallOriginTrampoline* callOriginTrampoline = nullptr;
@@ -141,18 +141,18 @@ namespace HTFix {
         replacementHookTrampoline->setEntryCodeOffset(quickCompileOffset);
         replacementHookTrampoline->setHookMethod(reinterpret_cast<Code>(hookMethod));
         hookTrampoline->replacement = replacementHookTrampoline;
-        hookTrampoline->originCode = static_cast<Code>(originMethod->getQuickCodeEntry());
+        hookTrampoline->originCode = static_cast<Code>(targetMethod->getQuickCodeEntry());
 
         if (SWITCH_SETX0 && SDK_INT >= ANDROID_N && backupMethod != nullptr) {
             callOriginTrampoline = new CallOriginTrampoline();
-            checkThumbCode(callOriginTrampoline, getEntryCode(originMethod));
+            checkThumbCode(callOriginTrampoline, getEntryCode(targetMethod));
             callOriginTrampoline->init();
             callOriginTrampolineSpace = allocExecuteSpace(callOriginTrampoline->getCodeLen());
             if (callOriginTrampolineSpace == 0)
                 goto label_error;
             callOriginTrampoline->setExecuteSpace(callOriginTrampolineSpace);
-            callOriginTrampoline->setOriginMethod(reinterpret_cast<Code>(originMethod));
-            Code originCode = getEntryCode(originMethod);
+            callOriginTrampoline->setOriginMethod(reinterpret_cast<Code>(targetMethod));
+            Code originCode = getEntryCode(targetMethod);
             if (callOriginTrampoline->isThumbCode()) {
                 originCode = callOriginTrampoline->getThumbCodePcAddress(originCode);
             }
@@ -160,7 +160,7 @@ namespace HTFix {
             hookTrampoline->callOrigin = callOriginTrampoline;
         }
 
-        trampolines[originMethod] = hookTrampoline;
+        trampolines[targetMethod] = hookTrampoline;
         return hookTrampoline;
 
         label_error:

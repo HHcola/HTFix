@@ -12,7 +12,7 @@ public class HTFixNative {
     }
 
     public static native boolean initNative(int sdk, boolean debug);
-    public static native int hookMethod(Member originMethod, Method hookMethod, Method backupMethod, int hookMode);
+    public static native int hookMethod(Member targetMethod, Method hookMethod, Method backupMethod, int hookMode);
     public static native void ensureMethodCached(Method hook, Method backup);
     public static native void ensureDeclareClass(Member origin, Method backup);
 

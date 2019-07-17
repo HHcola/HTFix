@@ -52,7 +52,7 @@ void ensureMethodCached(art::mirror::ArtMethod *hookMethod, art::mirror::ArtMeth
 
 
 bool doHookWithReplacement(JNIEnv* env,
-                           art::mirror::ArtMethod *originMethod,
+                           art::mirror::ArtMethod *targetMethod,
                            art::mirror::ArtMethod *hookMethod,
                            art::mirror::ArtMethod *backupMethod) {
 
@@ -64,12 +64,12 @@ bool doHookWithReplacement(JNIEnv* env,
         forceProcessProfiles();
     }
     if ((SDK_INT >= ANDROID_N && SDK_INT <= ANDROID_P)
-        || (SDK_INT >= ANDROID_Q && !originMethod->isAbstract())) {
-        originMethod->setHotnessCount(0);
+        || (SDK_INT >= ANDROID_Q && !targetMethod->isAbstract())) {
+        targetMethod->setHotnessCount(0);
     }
 
     if (backupMethod != nullptr) {
-        originMethod->backup(backupMethod);
+        targetMethod->backup(backupMethod);
         backupMethod->disableCompilable();
         if (!backupMethod->isStatic()) {
             backupMethod->setPrivate();
@@ -77,24 +77,24 @@ bool doHookWithReplacement(JNIEnv* env,
         backupMethod->flushCache();
     }
 
-    originMethod->disableCompilable();
+    targetMethod->disableCompilable();
     hookMethod->disableCompilable();
     hookMethod->flushCache();
 
-    originMethod->disableInterpreterForO();
+    targetMethod->disableInterpreterForO();
 
-    HTFix::HookTrampoline* hookTrampoline = trampolineManager.installReplacementTrampoline(originMethod, hookMethod, backupMethod);
+    HTFix::HookTrampoline* hookTrampoline = trampolineManager.installReplacementTrampoline(targetMethod, hookMethod, backupMethod);
     if (hookTrampoline != nullptr) {
-        originMethod->setQuickCodeEntry(hookTrampoline->replacement->getCode());
+        targetMethod->setQuickCodeEntry(hookTrampoline->replacement->getCode());
         void* entryPointFormInterpreter = hookMethod->getInterpreterCodeEntry();
         if (entryPointFormInterpreter != NULL) {
-            originMethod->setInterpreterCodeEntry(entryPointFormInterpreter);
+            targetMethod->setInterpreterCodeEntry(entryPointFormInterpreter);
         }
         if (hookTrampoline->callOrigin != nullptr) {
             backupMethod->setQuickCodeEntry(hookTrampoline->callOrigin->getCode());
             backupMethod->flushCache();
         }
-        originMethod->flushCache();
+        targetMethod->flushCache();
         return true;
     } else {
         return false;
@@ -145,9 +145,9 @@ bool doHookWithInline(JNIEnv* env,
 
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_htfixlib_HTFixNative_hookMethod(JNIEnv *env, jclass type, jobject originMethod,
+Java_com_htfixlib_HTFixNative_hookMethod(JNIEnv *env, jclass type, jobject targetMethod,
                                          jobject hookMethod, jobject backupMethod, jint hookMode) {
-    art::mirror::ArtMethod* origin = reinterpret_cast<art::mirror::ArtMethod *>(env->FromReflectedMethod(originMethod));
+    art::mirror::ArtMethod* target = reinterpret_cast<art::mirror::ArtMethod *>(env->FromReflectedMethod(targetMethod));
     art::mirror::ArtMethod* hook = reinterpret_cast<art::mirror::ArtMethod *>(env->FromReflectedMethod(hookMethod));
     art::mirror::ArtMethod* backup = backupMethod == NULL ? nullptr : reinterpret_cast<art::mirror::ArtMethod *>(env->FromReflectedMethod(backupMethod));
 
@@ -159,9 +159,9 @@ Java_com_htfixlib_HTFixNative_hookMethod(JNIEnv *env, jclass type, jobject origi
     HTFix::StopTheWorld stopTheWorld;
 
     if (mode == INLINE) {
-        if (!origin->isCompiled()) {
+        if (!target->isCompiled()) {
             if (SDK_INT >= ANDROID_N) {
-                isInlineHook = origin->compile(env);
+                isInlineHook = target->compile(env);
             }
         } else {
             isInlineHook = true;
@@ -172,19 +172,19 @@ Java_com_htfixlib_HTFixNative_hookMethod(JNIEnv *env, jclass type, jobject origi
         goto label_hook;
     }
 
-    if (origin->isAbstract()) {
+    if (target->isAbstract()) {
         isInlineHook = false;
     } else if (gHookMode != AUTO) {
         if (gHookMode == INLINE) {
-            isInlineHook = origin->compile(env);
+            isInlineHook = target->compile(env);
         } else {
             isInlineHook = false;
         }
     } else if (SDK_INT >= ANDROID_O) {
         isInlineHook = false;
-    } else if (!origin->isCompiled()) {
+    } else if (!target->isCompiled()) {
         if (SDK_INT >= ANDROID_N) {
-            isInlineHook = origin->compile(env);
+            isInlineHook = target->compile(env);
         } else {
             isInlineHook = false;
         }
@@ -194,10 +194,10 @@ Java_com_htfixlib_HTFixNative_hookMethod(JNIEnv *env, jclass type, jobject origi
 
 
     label_hook:
-    if (isInlineHook && trampolineManager.canSafeInline(origin)) {
-        return doHookWithInline(env, origin, hook, backup) ? INLINE : -1;
+    if (isInlineHook && trampolineManager.canSafeInline(target)) {
+        return doHookWithInline(env, target, hook, backup) ? INLINE : -1;
     } else {
-        return doHookWithReplacement(env, origin, hook, backup) ? REPLACE : -1;
+        return doHookWithReplacement(env, target, hook, backup) ? REPLACE : -1;
     }
 }
 
