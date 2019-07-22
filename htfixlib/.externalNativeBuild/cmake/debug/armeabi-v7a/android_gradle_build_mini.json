@@ -1,16 +1,16 @@
 {
   "buildFiles": [
-    "E:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\src\\main\\cpp\\CMakeLists.txt"
+    "D:\\work\\tencent\\hook\\HTFix\\htfixlib\\src\\main\\cpp\\CMakeLists.txt"
   ],
   "cleanCommands": [
-    "E:\\workspace\\android\\android-sdk-windows\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\.externalNativeBuild\\cmake\\debug\\armeabi-v7a --target clean"
+    "D:\\work\\android\\android-sdk-windows\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\work\\tencent\\hook\\HTFix\\htfixlib\\.externalNativeBuild\\cmake\\debug\\armeabi-v7a --target clean"
   ],
   "libraries": {
     "htfix-Debug-armeabi-v7a": {
       "artifactName": "htfix",
-      "buildCommand": "E:\\workspace\\android\\android-sdk-windows\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\.externalNativeBuild\\cmake\\debug\\armeabi-v7a --target htfix",
+      "buildCommand": "D:\\work\\android\\android-sdk-windows\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\work\\tencent\\hook\\HTFix\\htfixlib\\.externalNativeBuild\\cmake\\debug\\armeabi-v7a --target htfix",
       "abi": "armeabi-v7a",
-      "output": "E:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libhtfix.so"
+      "output": "D:\\work\\tencent\\hook\\HTFix\\htfixlib\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libhtfix.so"
     }
   }
 }

@@ -130,6 +130,7 @@ namespace HTFix {
         }
 
         void setExecuteSpace(Code start) {
+            LOGD("setExecuteSpace start = 0x%x, tempCode = 0x%x, codeLen = %d", start, tempCode, codeLen);
             code = start;
             memcpy(code, tempCode, codeLen);
             flushCache(reinterpret_cast<Size>(code), codeLen);
@@ -137,6 +138,7 @@ namespace HTFix {
 
         void setEntryCodeOffset(Size offSet) {
             this->codeEntryOffSet = offSet;
+            LOGD("setEntryCodeOffset codeEntryOffSet = %d", codeEntryOffSet);
         }
 
         void codeCopy(Code src, Size targetOffset, Size len) {
@@ -257,6 +259,7 @@ namespace HTFix {
     public:
 
         void setHookMethod(Code hookMethod) {
+            LOGD("setHookMethod hookMethod = 0x%x, replacementArtMethodOffset = %d, OFFSET_REPLACEMENT_OFFSET_CODE_ENTRY = %d", hookMethod, OFFSET_REPLACEMENT_ART_METHOD, OFFSET_REPLACEMENT_OFFSET_CODE_ENTRY);
             codeCopy(reinterpret_cast<Code>(&hookMethod), OFFSET_REPLACEMENT_ART_METHOD, BYTE_POINT);
             void* codeEntry = getEntryCodeAddr(hookMethod);
             codeCopy(reinterpret_cast<Code>(&codeEntry), OFFSET_REPLACEMENT_OFFSET_CODE_ENTRY, BYTE_POINT);

@@ -1,12 +1,9 @@
 
 {
-	"buildFiles" : 
-	[
-		"E:/workspace/android/github-source/hook/HTFix/htfixlib/src/main/cpp/CMakeLists.txt"
-	],
+	"buildFiles" : [ "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/CMakeLists.txt" ],
 	"cleanCommands" : 
 	[
-		"E:\\workspace\\android\\android-sdk-windows\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\.externalNativeBuild\\cmake\\debug\\armeabi-v7a --target clean"
+		"D:\\work\\android\\android-sdk-windows\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\work\\tencent\\hook\\HTFix\\htfixlib\\.externalNativeBuild\\cmake\\debug\\armeabi-v7a --target clean"
 	],
 	"cppFileExtensions" : [ "cpp" ],
 	"libraries" : 
@@ -15,99 +12,111 @@
 		{
 			"abi" : "armeabi-v7a",
 			"artifactName" : "htfix",
-			"buildCommand" : "E:\\workspace\\android\\android-sdk-windows\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\workspace\\android\\github-source\\hook\\HTFix\\htfixlib\\.externalNativeBuild\\cmake\\debug\\armeabi-v7a --target htfix",
+			"buildCommand" : "D:\\work\\android\\android-sdk-windows\\cmake\\3.6.4111459\\bin\\cmake.exe --build D:\\work\\tencent\\hook\\HTFix\\htfixlib\\.externalNativeBuild\\cmake\\debug\\armeabi-v7a --target htfix",
 			"buildType" : "debug",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot  -Dhtfix_EXPORTS -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
-					"src" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/src/main/cpp/HTFixHook.cpp",
-					"workingDirectory" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dhtfix_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
+					"src" : "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/HTFixHook.cpp",
+					"workingDirectory" : "D:/work/tencent/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
 				},
 				
 				{
-					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot  -Dhtfix_EXPORTS -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
-					"src" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/src/main/cpp/base/utils.cpp",
-					"workingDirectory" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dhtfix_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
+					"src" : "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/base/utils.cpp",
+					"workingDirectory" : "D:/work/tencent/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
 				},
 				
 				{
-					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot  -Dhtfix_EXPORTS -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
-					"src" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/src/main/cpp/fake/HideApi.cpp",
-					"workingDirectory" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dhtfix_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
+					"src" : "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/fake/HideApi.cpp",
+					"workingDirectory" : "D:/work/tencent/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
 				},
 				
 				{
-					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot  -Dhtfix_EXPORTS -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
-					"src" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/src/main/cpp/fake/dlfcn_nougat.cpp",
-					"workingDirectory" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dhtfix_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
+					"src" : "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/fake/dlfcn_nougat.cpp",
+					"workingDirectory" : "D:/work/tencent/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
 				},
 				
 				{
-					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot  -Dhtfix_EXPORTS -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
-					"src" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/src/main/cpp/fake/ElfUtil.cpp",
-					"workingDirectory" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dhtfix_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
+					"src" : "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/fake/ElfUtil.cpp",
+					"workingDirectory" : "D:/work/tencent/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
 				},
 				
 				{
-					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot  -Dhtfix_EXPORTS -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
-					"src" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/src/main/cpp/art/ArtMethod.cpp",
-					"workingDirectory" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dhtfix_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
+					"src" : "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/art/ArtMethod.cpp",
+					"workingDirectory" : "D:/work/tencent/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
 				},
 				
 				{
-					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot  -Dhtfix_EXPORTS -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
-					"src" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/src/main/cpp/art/ArtMethodOffSet.cpp",
-					"workingDirectory" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dhtfix_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
+					"src" : "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/art/ArtMethodOffSet.cpp",
+					"workingDirectory" : "D:/work/tencent/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
 				},
 				
 				{
-					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot  -Dhtfix_EXPORTS -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
-					"src" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/src/main/cpp/art/art_compiler_options.cpp",
-					"workingDirectory" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dhtfix_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
+					"src" : "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/art/art_compiler_options.cpp",
+					"workingDirectory" : "D:/work/tencent/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
 				},
 				
 				{
-					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot  -Dhtfix_EXPORTS -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
-					"src" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/src/main/cpp/art/cast_compiler_options.cpp",
-					"workingDirectory" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dhtfix_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
+					"src" : "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/art/cast_compiler_options.cpp",
+					"workingDirectory" : "D:/work/tencent/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
 				},
 				
 				{
-					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot  -Dhtfix_EXPORTS -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
-					"src" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/src/main/cpp/insts/insts_arm32.cpp",
-					"workingDirectory" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dhtfix_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
+					"src" : "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/insts/insts_arm32.cpp",
+					"workingDirectory" : "D:/work/tencent/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
 				},
 				
 				{
-					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot  -Dhtfix_EXPORTS -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
-					"src" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/src/main/cpp/insts/insts_arm64.cpp",
-					"workingDirectory" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dhtfix_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
+					"src" : "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/insts/insts_arm64.cpp",
+					"workingDirectory" : "D:/work/tencent/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
 				},
 				
 				{
-					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot  -Dhtfix_EXPORTS -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
-					"src" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/src/main/cpp/hook/MethodHook.cpp",
-					"workingDirectory" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dhtfix_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
+					"src" : "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/hook/MethodHook.cpp",
+					"workingDirectory" : "D:/work/tencent/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
 				},
 				
 				{
-					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/windows-x86_64 --sysroot=E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot  -Dhtfix_EXPORTS -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\libs\\armeabi-v7a\\include -isystem E:\\workspace\\android\\android-sdk-windows\\ndk-bundle\\sources\\cxx-stl\\gnu-libstdc++\\4.9\\include\\backward  -isystem E:/workspace/android/android-sdk-windows/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=19 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
-					"src" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/src/main/cpp/trampoline/TrampolineManager.cpp",
-					"workingDirectory" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dhtfix_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
+					"src" : "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/hook/MethodTrampoline.cpp",
+					"workingDirectory" : "D:/work/tencent/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dhtfix_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
+					"src" : "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/hook/HTFixMethodHook.cpp",
+					"workingDirectory" : "D:/work/tencent/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi19 --gcc-toolchain=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dhtfix_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -march=armv7-a -mthumb -Wa,--noexecstack -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -std=c++11  -c ",
+					"src" : "D:/work/tencent/hook/HTFix/htfixlib/src/main/cpp/trampoline/TrampolineManager.cpp",
+					"workingDirectory" : "D:/work/tencent/hook/HTFix/htfixlib/.externalNativeBuild/cmake/debug/armeabi-v7a"
 				}
 			],
-			"output" : "E:/workspace/android/github-source/hook/HTFix/htfixlib/build/intermediates/cmake/debug/obj/armeabi-v7a/libhtfix.so",
-			"toolchain" : "848383433"
+			"output" : "D:/work/tencent/hook/HTFix/htfixlib/build/intermediates/cmake/debug/obj/armeabi-v7a/libhtfix.so",
+			"toolchain" : "4024195199"
 		}
 	},
 	"toolchains" : 
 	{
-		"848383433" : 
+		"4024195199" : 
 		{
-			"cCompilerExecutable" : "E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
-			"cppCompilerExecutable" : "E:/workspace/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+			"cCompilerExecutable" : "D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe",
+			"cppCompilerExecutable" : "D:/work/android/android-sdk-windows/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
 		}
 	}
 }

@@ -29,6 +29,8 @@ set(${PROJECT_NAME}_SOURCES
         trampoline/arch/arm32.S
         trampoline/arch/arm64.S
         hook/MethodHook.cpp
+        hook/MethodTrampoline.cpp
+        hook/HTFixMethodHook.cpp
         trampoline/TrampolineManager.cpp
         )
 

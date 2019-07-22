@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.inputmethod.BaseInputConnection;
 
 import com.htfixlib.HTFixHook;
+import com.htfixlib.HTFixNative;
 
 import java.lang.reflect.Method;
 
@@ -17,7 +18,8 @@ public class BaseInputConnectionReplace {
         try {
             Method targetMethod = BaseInputConnection.class.getMethod("removeComposingSpans", Spannable.class);
             Method hookMethod = BaseInputConnectionReplace.class.getMethod("hookRemoveComposingSpans", Spannable.class);
-//            HTFixHook.backupAndHook(targetMethod, hookMethod);
+
+            HTFixHook.hookHTFix(targetMethod, hookMethod);
         } catch (Exception e) {
             e.printStackTrace();
         }

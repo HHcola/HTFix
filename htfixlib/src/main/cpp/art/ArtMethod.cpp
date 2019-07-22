@@ -1,6 +1,7 @@
 #include "ArtMethod.h"
 #include "ArtMethodOffSet.h"
 #include "../base/utils.h"
+#include "../fake/HideApi.h"
 
 extern int SDK_INT;
 extern bool DEBUG;
@@ -26,12 +27,14 @@ void ArtMethod::disableCompilable() {
     if (SDK_INT < ANDROID_N)
         return;
     uint32_t accessFlag = getAccessFlags();
+    LOGD("disableCompilable accessFlag = 0x%x", accessFlag);
     if (SDK_INT >= ANDROID_O2) {
         accessFlag |= 0x02000000;
         accessFlag |= 0x00800000;
     } else {
         accessFlag |= 0x01000000;
     }
+    LOGD("disableCompilable after accessFlag = 0x%x", accessFlag);
     setAccessFlags(accessFlag);
 }
 
@@ -84,8 +87,10 @@ void ArtMethod::setStatic() {
 
 void ArtMethod::setNative() {
     uint32_t accessFlag = getAccessFlags();
+    LOGD("setNative accessFlag = 0x%x", accessFlag);
     accessFlag |= 0x0100;
     setAccessFlags(accessFlag);
+    LOGD("setNative after accessFlag = 0x%x", accessFlag);
 }
 
 uint32_t ArtMethod::getAccessFlags() {
@@ -121,6 +126,7 @@ void ArtMethod::setJniCodeEntry(void *entry) {
 }
 
 void ArtMethod::setInterpreterCodeEntry(void *entry) {
+    LOGD("setInterpreterCodeEntry entryPointFormInterpreter offset = %d", CastArtMethod::entryPointFromInterpreter->getOffset());
     CastArtMethod::entryPointFromInterpreter->set(this, entry);
 }
 
@@ -141,16 +147,19 @@ void ArtMethod::setHotnessCount(uint16_t count) {
 }
 
 bool ArtMethod::compile(JNIEnv* env) {
-    if (isCompiled())
+    if (isCompiled()) {
         return true;
+    }
     //some unknown error when trigger jit for jni method manually
-    if (isNative())
+    if (isNative()) {
         return false;
-//    Size threadId = getAddressFromJavaByCallMethod(env, "com/swift/sandhook/SandHook", "getThreadId");
-//    if (threadId == 0)
-//        return false;
-//    return compileMethod(this, reinterpret_cast<void *>(threadId)) && isCompiled();
-    return false;
+    }
+
+    Size threadId = getAddressFromJavaByCallMethod(env, "com/htfixlib/utils/ArtMethodUtils", "getThreadId");
+    if (threadId == 0)
+        return false;
+    return compileMethod(this, reinterpret_cast<void *>(threadId)) && isCompiled();
+//    return false;
 }
 
 bool ArtMethod::deCompile() {

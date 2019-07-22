@@ -42,6 +42,12 @@ public class HTFixHook {
         HookWrapper.addHookClass(classLoader, hookWrapperClass);
     }
 
+    public static synchronized void hookHTFix(Method targetMethod, Method hookMethod) {
+//        resolveStaticMethod(targetMethod);
+        HTFixNative.htfixHookMethod(targetMethod, hookMethod);
+//        HTFixNative.hookMethod(targetMethod, hookMethod, null, HookMode.REPLACE);
+    }
+
     public static synchronized void hook(HookWrapper.HookEntity entity) throws HookErrorException {
 
         if (entity == null)

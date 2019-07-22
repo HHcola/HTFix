@@ -10,14 +10,23 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:text="hook"
+        android:text="hook fix"
+        />
+
+    <Button
+        android:id="@+id/hook_cany"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/hook"
+        android:text="hook cany"
         />
 
     <Button
         android:id="@+id/start_activity"
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/hook"
+        android:layout_below="@+id/hook_cany"
         android:layout_centerHorizontal="true"
         android:text="start activity"
         />

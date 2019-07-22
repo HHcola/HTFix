@@ -55,6 +55,7 @@ bool doHookWithReplacement(JNIEnv* env,
                            art::mirror::ArtMethod *targetMethod,
                            art::mirror::ArtMethod *hookMethod,
                            art::mirror::ArtMethod *backupMethod) {
+    LOGD("doHookWithReplacement target = 0x%x hook = 0x%x", targetMethod, hookMethod);
 
     if (!hookMethod->compile(env)) {
         hookMethod->disableCompilable();
@@ -81,13 +82,23 @@ bool doHookWithReplacement(JNIEnv* env,
     hookMethod->disableCompilable();
     hookMethod->flushCache();
 
+    // disable interpreter how to do
     targetMethod->disableInterpreterForO();
 
     HTFix::HookTrampoline* hookTrampoline = trampolineManager.installReplacementTrampoline(targetMethod, hookMethod, backupMethod);
     if (hookTrampoline != nullptr) {
+        size_t address = reinterpret_cast<size_t>(hookTrampoline->replacement->getCode());
+        LOGD("targetMethod hookTrampoline->replacement  value = %04x", address);
+        if (hookTrampoline->replacement != nullptr) {
+            memcpy(reinterpret_cast<void *>((Size)targetMethod + 28), &address, pointer_size);
+        } else {
+            LOGE("failed to allocate space for trampoline of target method");
+            return 1;
+        }
         targetMethod->setQuickCodeEntry(hookTrampoline->replacement->getCode());
         void* entryPointFormInterpreter = hookMethod->getInterpreterCodeEntry();
         if (entryPointFormInterpreter != NULL) {
+            LOGD("entryPointFormInterpreter != NULL");
             targetMethod->setInterpreterCodeEntry(entryPointFormInterpreter);
         }
         if (hookTrampoline->callOrigin != nullptr) {
@@ -197,8 +208,11 @@ Java_com_htfixlib_HTFixNative_hookMethod(JNIEnv *env, jclass type, jobject targe
     if (isInlineHook && trampolineManager.canSafeInline(target)) {
         return doHookWithInline(env, target, hook, backup) ? INLINE : -1;
     } else {
+        LOGD("doHookWithReplacement");
         return doHookWithReplacement(env, target, hook, backup) ? REPLACE : -1;
     }
+
+    return doHookWithReplacement(env, target, hook, backup) ? REPLACE : -1;
 }
 
 

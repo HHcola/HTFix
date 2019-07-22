@@ -6,14 +6,60 @@
 #define HTFIX_METHODHOOK_H
 
 
+#include <jni.h>
+#include <mutex>
+#include <list>
+#include "../base/arch_base.h"
+#include "../base/arch.h"
+#include "MethodTrampoline.h"
+#include "../trampoline/TrampolineManager.h"
+
 namespace HTFix {
+#define MMAP_PAGE_SIZE sysconf(_SC_PAGESIZE)
+#define EXE_BLOCK_SIZE MMAP_PAGE_SIZE
     class MethodHook {
     public:
+        void init(JNIEnv *jniEnv, int sdkVersion);
         int doHookMethod(void *targetMethod, void *hookMethod);
-        void ensureMethodCached(void *hookMethod);
-
     private:
-        size_t kDexCacheMethodCacheSize = 1024;
+        void setSdkVersioin(int sdkVersion);
+        void setArtMethodSize(JNIEnv *jniEnv);
+        void setAccessFlags() ;
+        void setEntryPointQuickCompliedCode();
+        void setEntryPointInterpreter();
+        void setEntryPointFromJni();
+        void setDexCacheResolvedMethods();
+        void setAccCompileDontBother();
+
+        size_t getArtMethodSize();
+        size_t getQuickCompliedOffset();
+    public:
+        void installReplacementTrampoline(void *hookMethod);
+        Code allocExecuteSpace(Size size);
+        void flushCache(void *method);
+    private:
+        void setNonCompilable(void *method);
+        void disableInterpreterForO(void *method);
+        void setNative(void *method);
+        Code allocNewSpace();
+        uint32_t getAccessFlags(void *method);
+        void setAccessFlags(void *method, uint32_t flags);
+    private:
+        int sdkVersion;
+        int kAccNative = 0x0100;
+        int kAccCompileDontBother = 0x01000000;
+        size_t artMethodSize;
+        size_t offset_access_flags_;
+
+        size_t offset_entry_point_from_quick_compiled_code_;
+        size_t offset_dex_cache_resolved_methods_;
+        size_t offset_entry_point_from_jni_;
+        size_t offset_entry_point_from_interpreter_;
+    private:
+        std::list<Code> executeSpaceList = std::list<Code>();
+        std::mutex allocSpaceLock;
+        Size executePageOffset = 0;
+        MethodReplacementTrampoline * methodReplacementTrampoline;
     };
 }
 #endif //HTFIX_METHODHOOK_H

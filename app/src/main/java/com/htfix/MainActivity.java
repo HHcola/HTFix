@@ -19,16 +19,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initView() {
         findViewById(R.id.hook).setOnClickListener(this);
+        findViewById(R.id.hook_cany).setOnClickListener(this);
         findViewById(R.id.start_activity).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.hook) {
-            Hook.hook(getPackageName());
             BaseInputConnectionReplace.hookBaseInputConnectionReplace();
         } else if (v.getId() == R.id.start_activity) {
             startActivity();
+        } else if (v.getId() == R.id.hook_cany) {
+//            Hook.hook(getPackageName());
         }
     }
 

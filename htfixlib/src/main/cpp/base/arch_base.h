@@ -17,6 +17,7 @@ x: \
 x: \
 
 #define FUNCTION_END(x) .size x, .-x
+#define Code unsigned char *
 
 #define REPLACEMENT_HOOK_TRAMPOLINE replacement_hook_trampoline
 #define INLINE_HOOK_TRAMPOLINE inline_hook_trampoline

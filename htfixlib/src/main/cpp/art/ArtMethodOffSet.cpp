@@ -188,6 +188,7 @@ namespace HTFix {
 
         // get artmethod size
         size = artMethod2 - artMethod1;
+        LOGD("setArtMethodSize size = %d", size);
 
         art::mirror::ArtMethod *m1 = reinterpret_cast<art::mirror::ArtMethod *>(artMethod1);
         art::mirror::ArtMethod *m2 = reinterpret_cast<art::mirror::ArtMethod *>(artMethod2);
@@ -195,6 +196,7 @@ namespace HTFix {
         //init Members
         entryPointQuickCompiled = new CastEntryPointQuickCompiled();
         entryPointQuickCompiled->init(env, m1, size);
+        LOGD("entryPointQuickCompiled offset = %d", entryPointQuickCompiled->getOffset());
 
         accessFlag = new CastAccessFlag();
         accessFlag->init(env, m1, size);

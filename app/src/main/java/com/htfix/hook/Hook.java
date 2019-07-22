@@ -20,7 +20,7 @@ public class Hook {
 
         try {
             HTFixHook.addHookClass(
-                    ActivityHooker.class,
+//                    ActivityHooker.class,
                     BaseInputConnectionHooker.class);
         } catch (HookErrorException e) {
             e.printStackTrace();

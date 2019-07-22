@@ -20,7 +20,7 @@ public class ArtMethodUtils {
     public static int testAccessFlag;
 
 
-    private static void init() {
+    public static void init() {
         initTestOffset();
         initThreadPeer();
         HTFixMethodResolver.init();
