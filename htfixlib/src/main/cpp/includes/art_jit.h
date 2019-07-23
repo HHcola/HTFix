@@ -1,7 +1,3 @@
-//
-// Created by 甘尧 on 2019/2/23.
-//
-
 #ifndef HTFIX_ART_JIT_H
 #define HTFIX_ART_JIT_H
 

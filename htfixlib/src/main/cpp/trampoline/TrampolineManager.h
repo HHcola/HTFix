@@ -1,7 +1,3 @@
-//
-// Created by timothyhe on 2019/7/16.
-//
-
 #ifndef HTFIX_TRAMPOLINEMANAGER_H
 #define HTFIX_TRAMPOLINEMANAGER_H
 

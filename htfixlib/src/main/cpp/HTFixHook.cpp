@@ -1,6 +1,3 @@
-//
-// Created by timothyhe on 2019/7/8.
-//
 #include <jni.h>
 #include "base/base.h"
 #include "hook/MethodHook.h"

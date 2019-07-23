@@ -1,7 +1,3 @@
-//
-// Created by timothyhe on 2019/7/16.
-//
-
 #include "HideApi.h"
 #include <fcntl.h>
 #include <unistd.h>

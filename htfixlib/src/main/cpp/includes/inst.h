@@ -1,7 +1,3 @@
-//
-// Created by swift on 2019/2/3.
-//
-
 #ifndef SANDHOOK_INST_VISTOR_H
 #define SANDHOOK_INST_VISTOR_H
 

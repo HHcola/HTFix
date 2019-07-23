@@ -1,7 +1,3 @@
-//
-// Created by timothyhe on 2019/7/16.
-//
-
 #ifndef HTFIX_HIDEAPI_H
 #define HTFIX_HIDEAPI_H
 

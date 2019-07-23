@@ -1,7 +1,3 @@
-//
-// Created by timothyhe on 2019/7/9.
-//
-
 #include "utils.h"
 extern "C" {
 

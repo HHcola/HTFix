@@ -1,7 +1,3 @@
-//
-// Created by SwiftGan on 2019/2/11.
-//
-
 #if defined(__aarch64__)
 
 #include "../includes/inst.h"

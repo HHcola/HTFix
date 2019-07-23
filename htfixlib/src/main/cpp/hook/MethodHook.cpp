@@ -1,7 +1,3 @@
-//
-// Created by timothyhe on 2019/7/11.
-//
-
 #include <malloc.h>
 #include "MethodHook.h"
 #include "../base/utils.h"

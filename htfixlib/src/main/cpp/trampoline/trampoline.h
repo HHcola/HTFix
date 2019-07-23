@@ -1,7 +1,3 @@
-//
-// Created by timothyhe on 2019/7/11.
-//
-
 #ifndef HTFIX_TRAMPOLINE_H
 #define HTFIX_TRAMPOLINE_H
 #include <cstdint>

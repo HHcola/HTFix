@@ -1,7 +1,3 @@
-//
-// Created by SwiftGan on 2019/1/21.
-//
-
 #ifndef SANDHOOK_LOCK_H
 #define SANDHOOK_LOCK_H
 

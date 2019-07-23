@@ -1,7 +1,3 @@
-//
-// Created by timothyhe on 2019/7/9.
-//
-
 #ifndef HTFIX_UTILS_H
 #define HTFIX_UTILS_H
 #include <stdlib.h>

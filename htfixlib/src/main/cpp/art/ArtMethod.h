@@ -1,7 +1,3 @@
-//
-// Created by timothyhe on 2019/7/9.
-//
-
 #ifndef HTFIX_ARTMETHOD_H
 #define HTFIX_ARTMETHOD_H
 

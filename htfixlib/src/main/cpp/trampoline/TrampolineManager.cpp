@@ -1,6 +1,3 @@
-//
-// Created by timothyhe on 2019/7/16.
-//
 #include "TrampolineManager.h"
 #include "../includes/inst.h"
 extern int SDK_INT;

@@ -1,7 +1,3 @@
-//
-// Created by timothyhe on 2019/7/8.
-//
-
 #ifndef HTFIX_BASE_H
 #define HTFIX_BASE_H
 

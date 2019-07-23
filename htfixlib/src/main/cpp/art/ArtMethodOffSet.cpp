@@ -1,6 +1,3 @@
-//
-// Created by timothyhe on 2019/7/10.
-//
 #include "../base/base.h"
 #include "ArtMethodOffSet.h"
 #include "../base/utils.h"
