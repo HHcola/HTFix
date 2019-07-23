@@ -1,6 +1,3 @@
-//
-// Created by Administrator on 2019/7/21.
-//
 #include <unistd.h>
 #include "MethodTrampoline.h"
 #include "../base/arch_base.h"

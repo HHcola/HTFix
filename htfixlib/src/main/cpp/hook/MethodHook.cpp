@@ -1,13 +1,8 @@
-//
-// Created by timothyhe on 2019/7/11.
-//
-
 #include <malloc.h>
 #include "MethodHook.h"
 #include "../base/utils.h"
 #include "MethodTrampoline.h"
-#include "../includes/lock.h"
-#include "../trampoline/TrampolineManager.h"
+#include "../base/lock.h"
 
 namespace HTFix {
     void MethodHook::init(JNIEnv *jniEnv, int sdkVersion) {
@@ -24,7 +19,7 @@ namespace HTFix {
 
     int MethodHook::doHookMethod(void *targetMethod, void *hookMethod) {
         LOGD("doHookMethod");
-        if (sdkVersion >= ANDROID_N) {
+        if (sdkVersion >= __ANDROID_API_N__) {
             setNonCompilable(targetMethod);
             setNonCompilable(hookMethod);
         }
@@ -72,19 +67,19 @@ namespace HTFix {
 
     void MethodHook::setAccessFlags() {
         switch (sdkVersion) {
-            case ANDROID_L:
+            case __ANDROID_API_L__:
                 offset_access_flags_ = 56;
                 break;
-            case ANDROID_L2:
+            case __ANDROID_API_L_MR1__:
                 offset_access_flags_ = 20;
                 break;
-            case ANDROID_M:
-            case ANDROID_N:
-            case ANDROID_N2:
-            case ANDROID_O:
-            case ANDROID_O2:
-            case ANDROID_P:
-            case ANDROID_Q:
+            case __ANDROID_API_M__:
+            case __ANDROID_API_N__:
+            case __ANDROID_API_N_MR1__:
+            case __ANDROID_API_O__:
+            case __ANDROID_API_O_MR1__:
+            case __ANDROID_API_P__:
+            case __ANDROID_API_Q__:
                 offset_access_flags_ = 4;
                 break;
             default:
@@ -95,9 +90,9 @@ namespace HTFix {
     }
 
     void MethodHook::setEntryPointQuickCompliedCode() {
-        if (sdkVersion >= ANDROID_M) {
+        if (sdkVersion >= __ANDROID_API_M__) {
             offset_entry_point_from_quick_compiled_code_ =  getArtMethodSize() - BYTE_POINT;
-        } else if (sdkVersion <= ANDROID_L) {
+        } else if (sdkVersion <= __ANDROID_API_L__) {
             offset_entry_point_from_quick_compiled_code_ = getArtMethodSize() - 4 - 2 * BYTE_POINT;
         } else {
             // get error address of ANDROID_P and ANDROID_Q
@@ -107,9 +102,9 @@ namespace HTFix {
     }
 
     void MethodHook::setEntryPointInterpreter() {
-        if (sdkVersion >= ANDROID_L2 && sdkVersion <= ANDROID_M)
+        if (sdkVersion >= __ANDROID_API_L_MR1__ && sdkVersion <= __ANDROID_API_M__)
             offset_entry_point_from_interpreter_ = getArtMethodSize() - 3 * BYTE_POINT;
-        else if (sdkVersion <= ANDROID_L) {
+        else if (sdkVersion <= __ANDROID_API_L__) {
             offset_entry_point_from_interpreter_ = getArtMethodSize() - 4 * 8 - 4 * 4;
         } else {
             offset_entry_point_from_interpreter_ = 0;
@@ -118,11 +113,11 @@ namespace HTFix {
     }
 
     void MethodHook::setDexCacheResolvedMethods() {
-        if (sdkVersion >= ANDROID_P) {
+        if (sdkVersion >= __ANDROID_API_P__) {
             offset_dex_cache_resolved_methods_ = getArtMethodSize() + 1;
-        }else if (sdkVersion == ANDROID_M) {
+        }else if (sdkVersion == __ANDROID_API_M__) {
             offset_dex_cache_resolved_methods_ = 4;
-        } else if (sdkVersion >= ANDROID_L && sdkVersion <= ANDROID_L2) {
+        } else if (sdkVersion >= __ANDROID_API_L__ && sdkVersion <= __ANDROID_API_L_MR1__) {
             offset_dex_cache_resolved_methods_ = 4 * 3;
         } else {
             offset_dex_cache_resolved_methods_ = getArtMethodSize() + 1;
@@ -137,7 +132,7 @@ namespace HTFix {
     }
 
     void MethodHook::setEntryPointFromJni() {
-        if (sdkVersion >= ANDROID_L2 && sdkVersion <= ANDROID_N) {
+        if (sdkVersion >= __ANDROID_API_L_MR1__ && sdkVersion <= __ANDROID_API_N__) {
             offset_entry_point_from_jni_ = getArtMethodSize() - 2 * BYTE_POINT;
         } else {
             offset_entry_point_from_jni_ = getArtMethodSize() - 8 * 2 - 4 * 4;
@@ -154,7 +149,7 @@ namespace HTFix {
         return offset_entry_point_from_quick_compiled_code_;
     }
     void MethodHook::setNonCompilable(void *method) {
-        if (sdkVersion < ANDROID_N) {
+        if (sdkVersion < __ANDROID_API_N__) {
             return;
         }
         int access_flags = read32((char *) method + offset_access_flags_);
@@ -171,7 +166,7 @@ namespace HTFix {
     }
     void MethodHook::disableInterpreterForO(void *method) {
 //        if (SDK_INT >= ANDROID_O && DEBUG) {
-           if (sdkVersion >= ANDROID_O) {
+           if (sdkVersion >= __ANDROID_API_O__) {
                 setNative(method);
         }
     }

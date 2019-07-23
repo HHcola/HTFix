@@ -1,6 +1,3 @@
-//
-// Created by Administrator on 2019/7/21.
-//
 #include <jni.h>
 #include "../base/arch_base.h"
 #include "../base/arch.h"

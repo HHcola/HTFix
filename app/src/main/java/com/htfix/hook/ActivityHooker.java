@@ -21,20 +21,15 @@ public class ActivityHooker {
     @MethodParams(Bundle.class)
     static Method onCreateBackup;
 
-    @HookMethodBackup("onPause")
-    static HookWrapper.HookEntity onPauseBackup;
-
     @HookMethod("onCreate")
     @MethodParams(Bundle.class)
     public static void onCreate(Activity thiz, Bundle bundle) throws Throwable {
         Log.e("ActivityHooker", "hooked onCreate success " + thiz);
-        HTFixHook.callOriginByBackup(onCreateBackup, thiz, bundle);
     }
 
     @HookMethod("onPause")
     public static void onPause(@ThisObject Activity thiz) throws Throwable {
         Log.e("ActivityHooker", "hooked onPause success " + thiz);
-        onPauseBackup.callOrigin(thiz);
     }
 
 }

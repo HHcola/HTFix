@@ -12,7 +12,6 @@
 #include "../base/arch_base.h"
 #include "../base/arch.h"
 #include "MethodTrampoline.h"
-#include "../trampoline/TrampolineManager.h"
 
 namespace HTFix {
 #define MMAP_PAGE_SIZE sysconf(_SC_PAGESIZE)

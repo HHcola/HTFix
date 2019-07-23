@@ -1,13 +1,7 @@
-//
-// Created by SwiftGan on 2019/1/21.
-//
-
 #ifndef SANDHOOK_LOCK_H
 #define SANDHOOK_LOCK_H
 
 #include "mutex"
-#include "../fake/HideApi.h"
-
 namespace HTFix {
 
     class AutoLock {
@@ -18,13 +12,6 @@ namespace HTFix {
     private:
         std::mutex& mLock;
     };
-
-    class StopTheWorld {
-    public:
-        inline StopTheWorld()  { suspendVM(); }
-        inline ~StopTheWorld() { resumeVM(); }
-    };
-
 }
 
 #endif //SANDHOOK_LOCK_H

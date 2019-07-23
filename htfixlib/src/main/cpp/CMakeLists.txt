@@ -14,24 +14,12 @@ project(htfix)
 ENABLE_LANGUAGE(ASM)
 
 set(${PROJECT_NAME}_SOURCES
-        HTFixHook.cpp
         base/utils.cpp
-        fake/HideApi.cpp
-        fake/dlfcn_nougat.cpp
-        fake/ElfUtil.cpp
-        art/ArtMethod.cpp
-        art/ArtMethodOffSet.cpp
-        art/ArtMethodOffSet.cpp
-        art/art_compiler_options.cpp
-        art/cast_compiler_options.cpp
-        insts/insts_arm32.cpp
-        insts/insts_arm64.cpp
         trampoline/arch/arm32.S
         trampoline/arch/arm64.S
         hook/MethodHook.cpp
         hook/MethodTrampoline.cpp
         hook/HTFixMethodHook.cpp
-        trampoline/TrampolineManager.cpp
         )
 
 add_definitions(-std=c++11)

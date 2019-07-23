@@ -44,7 +44,7 @@ public class HookWrapper {
             throw new HookErrorException("fillBackupMethod error!", throwable);
         }
         for (HookEntity entity:hookEntityMap.values()) {
-            HTFixHook.hook(entity);
+//            HTFixHook.hook(entity);
         }
     }
 
@@ -431,10 +431,6 @@ public class HookWrapper {
 
         public boolean isCtor() {
             return target instanceof Constructor;
-        }
-
-        public Object callOrigin(Object thiz, Object... args) throws Throwable {
-            return HTFixHook.callOriginMethod(backupIsStub, target, backup, thiz, args);
         }
     }
 
