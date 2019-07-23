@@ -1,11 +1,9 @@
 package com.htfix;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
-import com.htfix.R;
-
-public class InputConnectionActivity extends AppCompatActivity {
+public class InputConnectionActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
