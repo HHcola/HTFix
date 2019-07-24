@@ -1,6 +1,6 @@
 #include <unistd.h>
 #include "MethodTrampoline.h"
-#include "../base/arch_base.h"
+#include "../../base/arch_base.h"
 
 extern "C" void DIRECT_JUMP_TRAMPOLINE();
 extern "C" void INLINE_HOOK_TRAMPOLINE();

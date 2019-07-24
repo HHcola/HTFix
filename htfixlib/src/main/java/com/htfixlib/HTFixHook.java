@@ -2,17 +2,12 @@ package com.htfixlib;
 
 import android.os.Build;
 
-import com.htfix.annotation.HookMode;
-import com.htfixlib.blacklist.HookBlackList;
-import com.htfixlib.offset.HTFixMethodResolver;
 import com.htfixlib.utils.FileUtils;
 import com.htfixlib.utils.HTFixHookConfig;
-import com.htfixlib.utils.HookLog;
 import com.htfixlib.wrapper.HookErrorException;
 import com.htfixlib.wrapper.HookWrapper;
 
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;

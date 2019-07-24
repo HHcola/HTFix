@@ -1,8 +1,8 @@
 #include <malloc.h>
 #include "MethodHook.h"
-#include "../base/utils.h"
+#include "../../base/utils.h"
 #include "MethodTrampoline.h"
-#include "../base/lock.h"
+#include "../../base/lock.h"
 
 namespace HTFix {
     void MethodHook::init(JNIEnv *jniEnv, int sdkVersion) {
@@ -19,42 +19,13 @@ namespace HTFix {
 
     int MethodHook::doHookMethod(void *targetMethod, void *hookMethod) {
         LOGD("doHookMethod");
-        if (sdkVersion >= __ANDROID_API_N__) {
-            setNonCompilable(targetMethod);
-            setNonCompilable(hookMethod);
-        }
-        flushCache(hookMethod);
-        // set the target method to native so that Android O wouldn't invoke it with interpreter
-
-        disableInterpreterForO(targetMethod);
-        installReplacementTrampoline(hookMethod);
-        unsigned char * code = methodReplacementTrampoline->getCode();
-//        for (int i = 0; i < methodReplacementTrampoline->getCodeLen(); i ++) {
-//            LOGD("methodReplacementTrampoline code value i = %d, value = %04x", i, *(code + i));
-//        }
-        size_t address = reinterpret_cast<size_t>(methodReplacementTrampoline->getCode());
-        if (methodReplacementTrampoline != nullptr) {
-//            memcpy((char *) targetMethod + offset_entry_point_from_quick_compiled_code_,
-//                   methodReplacementTrampoline->getCode(),
-//                   pointer_size);
-
-            memcpy((char *) targetMethod + offset_entry_point_from_quick_compiled_code_,
-                   &address,
-                   pointer_size);
+        if (sdkVersion < __ANDROID_API_K__) {
+          // don't support
+        } else if (sdkVersion >= __ANDROID_API_K__ || sdkVersion <= __ANDROID_API_N_MR1__) {
+            return artReplaceMethod(targetMethod, hookMethod);
         } else {
-            LOGE("failed to allocate space for trampoline of target method");
-            return 1;
+            return artTramReplaceMethod(targetMethod, hookMethod);
         }
-
-        if (offset_entry_point_from_interpreter_ != 0) {
-            LOGE("doHookMethod set offset_entry_point_from_interpreter_ ");
-            memcpy((char *) targetMethod + offset_entry_point_from_interpreter_,
-                   (char *) hookMethod + offset_entry_point_from_interpreter_,
-                   pointer_size);
-        }
-
-        flushCache(targetMethod);
-        return 0;
     }
 
     void MethodHook::setArtMethodSize(JNIEnv *jniEnv) {
@@ -243,6 +214,65 @@ namespace HTFix {
         LOGD("allocNewSpace 0x%x", exeSpace);
         return exeSpace;
     }
+
+    int MethodHook::artTramReplaceMethod(void *targetMethod, void *hookMethod) {
+        if (sdkVersion >= __ANDROID_API_N__) {
+            setNonCompilable(targetMethod);
+            setNonCompilable(hookMethod);
+        }
+        flushCache(hookMethod);
+        // set the target method to native so that Android O wouldn't invoke it with interpreter
+
+        disableInterpreterForO(targetMethod);
+        installReplacementTrampoline(hookMethod);
+        unsigned char * code = methodReplacementTrampoline->getCode();
+        size_t address = reinterpret_cast<size_t>(methodReplacementTrampoline->getCode());
+        if (methodReplacementTrampoline != nullptr) {
+
+            memcpy((char *) targetMethod + offset_entry_point_from_quick_compiled_code_,
+                   &address,
+                   pointer_size);
+        } else {
+            LOGE("failed to allocate space for trampoline of target method");
+            return 1;
+        }
+
+        if (offset_entry_point_from_interpreter_ != 0) {
+            LOGE("doHookMethod set offset_entry_point_from_interpreter_ ");
+            memcpy((char *) targetMethod + offset_entry_point_from_interpreter_,
+                   (char *) hookMethod + offset_entry_point_from_interpreter_,
+                   pointer_size);
+        }
+
+        flushCache(targetMethod);
+        return 1;
+    }
+
+    int MethodHook::artReplaceMethod(void *targetMethod, void *hookMethod) {
+        if (artMethodSize <= 0) {
+            LOGD("artReplaceMethod error artMethodSize is zero");
+            return 0;
+        }
+
+        for (int i = 0; i < artMethodSize; i ++) {
+            LOGD("artReplaceMethod befor targetMethod i = %d, value = 0x%x", i, *((char *)targetMethod + i));
+        }
+
+        for (int i = 0; i < artMethodSize; i ++) {
+            LOGD("artReplaceMethod befor hookMethod i = %d, value = 0x%x", i, *((char *)hookMethod + i));
+        }
+        memcpy(targetMethod,
+                hookMethod,
+                artMethodSize
+        );
+
+        for (int i = 0; i < artMethodSize; i ++) {
+            LOGD("artReplaceMethod befor targetMethod i = %d, value = 0x%x", i, *((char *)targetMethod + i));
+        }
+
+        return 1;
+    }
+
 
 
 

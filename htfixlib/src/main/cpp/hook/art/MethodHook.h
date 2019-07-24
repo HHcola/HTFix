@@ -9,8 +9,8 @@
 #include <jni.h>
 #include <mutex>
 #include <list>
-#include "../base/arch_base.h"
-#include "../base/arch.h"
+#include "../../base/arch_base.h"
+#include "../../base/arch.h"
 #include "MethodTrampoline.h"
 
 namespace HTFix {
@@ -43,6 +43,10 @@ namespace HTFix {
         Code allocNewSpace();
         uint32_t getAccessFlags(void *method);
         void setAccessFlags(void *method, uint32_t flags);
+
+    private:
+        int artTramReplaceMethod(void *targetMethod, void *hookMethod);
+        int artReplaceMethod(void *targetMethod, void *hookMethod);
     private:
         int sdkVersion;
         int kAccNative = 0x0100;

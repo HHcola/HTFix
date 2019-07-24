@@ -1,6 +1,6 @@
 #include <jni.h>
-#include "../base/arch_base.h"
-#include "../base/arch.h"
+#include "../../base/arch_base.h"
+#include "../../base/arch.h"
 
 #ifndef HTFIX_METHODTRAMPOLINE_H
 #define HTFIX_METHODTRAMPOLINE_H

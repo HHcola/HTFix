@@ -17,8 +17,9 @@ set(${PROJECT_NAME}_SOURCES
         base/utils.cpp
         trampoline/arch/arm32.S
         trampoline/arch/arm64.S
-        hook/MethodHook.cpp
-        hook/MethodTrampoline.cpp
+        hook/art/MethodHook.cpp
+        hook/art/MethodTrampoline.cpp
+        DalvikMethodReplace.cpp
         hook/HTFixMethodHook.cpp
         )
 
