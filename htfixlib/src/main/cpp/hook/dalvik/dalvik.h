@@ -31,7 +31,6 @@
 
 #include <stdint.h>    /* C99 */
 
-#include "common.h"
 
 typedef uint8_t u1;
 typedef uint16_t u2;
@@ -286,7 +285,7 @@ typedef struct Method {
 } Method;
 
 typedef Object* (*dvmDecodeIndirectRef_func)(void* self, jobject jobj);
-typedef void* (*dvmThreadSelf_func)();
+typedef Object* (*dvmThreadSelf_func)();
 
 dvmDecodeIndirectRef_func dvmDecodeIndirectRef_fnPtr;
 dvmThreadSelf_func dvmThreadSelf_fnPtr;
