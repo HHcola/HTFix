@@ -267,7 +267,7 @@ namespace HTFix {
         );
 
         for (int i = 0; i < artMethodSize; i ++) {
-            LOGD("artReplaceMethod befor targetMethod i = %d, value = 0x%x", i, *((char *)targetMethod + i));
+            LOGD("artReplaceMethod after targetMethod i = %d, value = 0x%x", i, *((char *)targetMethod + i));
         }
 
         return 1;
