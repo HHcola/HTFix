@@ -25,6 +25,17 @@ set(${PROJECT_NAME}_SOURCES
         android/art/well_known_classes.cc
         android/art/native_on_load.cc
         whale.cc
+        interceptor.cc
+        platform/memory.cc
+        platform/linux/elf_image.cc
+        platform/linux/process_map.cc
+
+        dbi/hook_common.cc
+        dbi/instruction_set.cc
+        dbi/arm/decoder_arm.cc
+        dbi/arm/decoder_thumb.cc
+        dbi/arm/inline_hook_arm.cc
+        dbi/arm/instruction_rewriter_arm.cc
         )
 
 add_definitions(-std=c++11)
