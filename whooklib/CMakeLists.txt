@@ -10,27 +10,12 @@
 # Gradle automatically packages shared libraries with your APK.
 cmake_minimum_required(VERSION 3.4.1)
 project(htfix)
-
 ENABLE_LANGUAGE(ASM)
-
-include_directories(${CMAKE_SOURCE_DIR}/)
-
-set(${PROJECT_NAME}_SOURCES
-        android/art/art_jni_trampoline.cc
-        android/art/art_method.cc
-        android/art/art_runtime.cc
-        android/art/art_symbol_resolver.cc
-        android/art/java_types.cc
-        android/art/scoped_thread_state_change.cc
-        android/art/well_known_classes.cc
-        android/art/native_on_load.cc
-        whale.cc
-        )
-
 add_definitions(-std=c++11)
 
-add_library(${PROJECT_NAME}
-        SHARED
-        ${${PROJECT_NAME}_SOURCES})
+include_directories(${CMAKE_SOURCE_DIR}/src/main/cpp/)
+include_directories(${CMAKE_SOURCE_DIR}/src/main/cpp/include/)
+include_directories(${CMAKE_SOURCE_DIR}/src/main/cpp/libffi/)
+include_directories(${CMAKE_SOURCE_DIR}/src/main/cpp/libffi/arm/)
 
-target_link_libraries(${PROJECT_NAME} log)
+ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/src/main/cpp/)
