@@ -4,6 +4,7 @@
 #include "MethodTrampoline.h"
 #include "../../base/lock.h"
 #include "../native_on_load.h"
+#include "ArtMethod.h"
 
 
 namespace HTFix {
@@ -21,10 +22,11 @@ namespace HTFix {
 
 
     int MethodHook::doHookMethod(void *targetMethod, void *hookMethod) {
-        LOGD("doHookMethod");
+        LOGD("doHookMethod sdkVersion = %d", sdkVersion);
         if (sdkVersion < __ANDROID_API_K__) {
           // don't support
-        } else if (sdkVersion >= __ANDROID_API_K__ || sdkVersion <= __ANDROID_API_N_MR1__) {
+          // 4.4--7.0(OAT compile can replace direct)
+        } else if (sdkVersion >= __ANDROID_API_K__ && sdkVersion <= __ANDROID_API_N__) {
             return artReplaceMethod(targetMethod, hookMethod);
         } else {
             return artTramReplaceMethod(targetMethod, hookMethod);
@@ -36,10 +38,14 @@ namespace HTFix {
      * check native_offset_access_flags_ and native_jni_code_offset_
      */
     bool MethodHook::checkNativeMethod() {
-        CHECK_EQUAL(native_offset_access_flags_, offset_access_flags_);
-        CHECK_EQUAL(native_jni_code_offset_, offset_entry_point_from_jni_);
-        LOGD("checkNativeMethod true");
-        return true;
+        if (sdkVersion > __ANDROID_API_N__) {
+            CHECK_EQUAL(native_offset_access_flags_, offset_access_flags_);
+            CHECK_EQUAL(native_jni_code_offset_, offset_entry_point_from_jni_);
+            LOGD("checkNativeMethod true");
+            return true;
+        } else {
+            return true;
+        }
     }
 
 
@@ -118,33 +124,36 @@ namespace HTFix {
     }
 
     void MethodHook::setHTFixNative(JNIEnv *env) {
-        size_t expected_access_flags = Constants::kAccPrivate | Constants::kAccStatic | Constants::kAccNative;
-        jclass java_class = env->FindClass(CLASS_NAME);
-        if (java_class == nullptr) {
-            LOGE("FindClass failed for = %s", CLASS_NAME);
-            return;
-        }
-
-        jmethodID methodOne = env->GetStaticMethodID(java_class, Constants::kMethodHTFixOne, "()V");
-        jmethodID methodTwo = env->GetStaticMethodID(java_class, Constants::kMethodHTFixTwo, "()V");
-
-        for (size_t offset = 0; offset != sizeof(size_t) * 24; offset += sizeof(size_t)) {
-            if (MemberOf<size_t>(methodOne, offset) == expected_access_flags) {
-                native_offset_access_flags_ = offset;
-                break;
+        // 8.0
+        if (sdkVersion > __ANDROID_API_N__) {
+            size_t expected_access_flags = Constants::kAccPrivate | Constants::kAccStatic | Constants::kAccNative;
+            jclass java_class = env->FindClass(CLASS_NAME);
+            if (java_class == nullptr) {
+                LOGE("FindClass failed for = %s", CLASS_NAME);
+                return;
             }
-        }
-        void *native_function = reinterpret_cast<void *>(HTFixNative_htfixNativeOne);
 
-        for (size_t offset = 0; offset != sizeof(size_t) * 24; offset += sizeof(size_t)) {
-            if (MemberOf<ptr_t>(methodOne, offset) == native_function) {
-                native_jni_code_offset_ = offset;
-                break;
+            jmethodID methodOne = env->GetStaticMethodID(java_class, Constants::kMethodHTFixOne, "()V");
+            jmethodID methodTwo = env->GetStaticMethodID(java_class, Constants::kMethodHTFixTwo, "()V");
+
+            for (size_t offset = 0; offset != sizeof(size_t) * 24; offset += sizeof(size_t)) {
+                if (MemberOf<size_t>(methodOne, offset) == expected_access_flags) {
+                    native_offset_access_flags_ = offset;
+                    break;
+                }
             }
-        }
+            void *native_function = reinterpret_cast<void *>(HTFixNative_htfixNativeOne);
 
-        LOGD("setHTFixNative native_offset_access_flags_ = %d, native_jni_code_offset_ = %d", native_offset_access_flags_, native_jni_code_offset_);
-        LOGD("setHTFixNative offset_access_flags_ = %d, offset_entry_point_from_jni_ = %d", offset_access_flags_, offset_entry_point_from_jni_);
+            for (size_t offset = 0; offset != sizeof(size_t) * 24; offset += sizeof(size_t)) {
+                if (MemberOf<ptr_t>(methodOne, offset) == native_function) {
+                    native_jni_code_offset_ = offset;
+                    break;
+                }
+            }
+
+            LOGD("setHTFixNative native_offset_access_flags_ = %d, native_jni_code_offset_ = %d", native_offset_access_flags_, native_jni_code_offset_);
+            LOGD("setHTFixNative offset_access_flags_ = %d, offset_entry_point_from_jni_ = %d", offset_access_flags_, offset_entry_point_from_jni_);
+        }
     }
 
 

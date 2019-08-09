@@ -18,7 +18,6 @@ public class BaseInputConnectionReplace {
         try {
             Method targetMethod = BaseInputConnection.class.getMethod("removeComposingSpans", Spannable.class);
             Method hookMethod = BaseInputConnectionReplace.class.getMethod("hookRemoveComposingSpans", Spannable.class);
-
             HTFixHook.hookHTFix(targetMethod, hookMethod);
         } catch (Exception e) {
             e.printStackTrace();
