@@ -36,11 +36,8 @@ namespace HTFix {
      * check native_offset_access_flags_ and native_jni_code_offset_
      */
     bool MethodHook::checkNativeMethod() {
-        CHECK_FIELD(native_offset_access_flags_, INT32_MAX);
-        CHECK_FIELD(native_jni_code_offset_, INT32_MAX);
-
-        CHECK_FIELD(native_offset_access_flags_, offset_access_flags_);
-        CHECK_FIELD(native_jni_code_offset_, offset_entry_point_from_jni_);
+        CHECK_EQUAL(native_offset_access_flags_, offset_access_flags_);
+        CHECK_EQUAL(native_jni_code_offset_, offset_entry_point_from_jni_);
         LOGD("checkNativeMethod true");
         return true;
     }
@@ -151,12 +148,11 @@ namespace HTFix {
     }
 
 
-
     void MethodHook::setEntryPointFromJni() {
         if (sdkVersion >= __ANDROID_API_L_MR1__ && sdkVersion <= __ANDROID_API_N__) {
             offset_entry_point_from_jni_ = getArtMethodSize() - 2 * BYTE_POINT;
         } else {
-            offset_entry_point_from_jni_ = getArtMethodSize() - 8 * 2 - 4 * 4;
+            offset_entry_point_from_jni_ = getArtMethodSize() - 2 * BYTE_POINT; // TODO
         }
     }
     void MethodHook::setSdkVersioin(int sdkVersion) {
