@@ -14,10 +14,6 @@ public class Hook {
         if (testAndroidQ) {
             HTFixHookConfig.SDK_INT = 29;
         }
-
-        HTFixNative.disableVMInline();
-        HTFixHook.tryDisableProfile(packageName);
-
         try {
             HTFixHook.addHookClass(
 //                    ActivityHooker.class,

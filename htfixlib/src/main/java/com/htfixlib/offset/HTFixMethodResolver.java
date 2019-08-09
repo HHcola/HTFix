@@ -144,7 +144,7 @@ public class HTFixMethodResolver {
     }
 
     private static void resolveInNative(Method hook, Method backup) {
-        HTFixNative.ensureMethodCached(hook, backup);
+//        HTFixNative.ensureMethodCached(hook, backup);
     }
 
 }
