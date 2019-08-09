@@ -1,33 +1,62 @@
 #include "native_on_load.h"
 #include "../base/base.h"
+#include "dalvik/DalvikMethodReplace.h"
+#include "art/MethodHook.h"
 
-#define CLASS_NAME "com/lody/whale/WhaleRuntime"
+#define CLASS_NAME "com/htfixlib/HTFixNative"
 
 #ifndef WHALE_ANDROID_AUTO_LOAD
 #define JNI_OnLoad Whale_OnLoad
 #endif
 
+HTFix::MethodHook methodHook;
+HTFix::DalvikMethodReplace dalvikMethodReplace;
 
-extern "C" OPEN_API void WhaleRuntime_reserved0(JNI_START) {}
 
-extern "C" OPEN_API void WhaleRuntime_reserved1(JNI_START) {}
+static bool isArt = true;
+extern "C" OPEN_API void HTFixNative_htfixNativeOne(JNI_START) {}
 
+extern "C" OPEN_API void HTFixNative_htfixNativeTwo(JNI_START) {}
+
+
+
+static jint
+HTFixNative_htfixHookMethod(JNI_START, jobject method_target, jobject method_hook) {
+    if (isArt) {
+        void* target = reinterpret_cast<void *>(env->FromReflectedMethod(method_target));
+        void*  hook = reinterpret_cast<void *>(env->FromReflectedMethod(method_hook));
+        return methodHook.doHookMethod(target , hook);
+    } else {
+        return dalvikMethodReplace.dalvik_replaceMethod(env, method_target , method_hook);
+    }
+}
+
+
+static jint
+HTFixNative_setup(JNI_START, jboolean is_art, jint api_level) {
+    isArt = is_art;
+    if (is_art) {
+        methodHook.init(env, api_level);
+    } else {
+        dalvikMethodReplace.dalvik_setup(env, api_level);
+    }
+}
+
+static jboolean
+HTFixNative_checkHookMethod(JNI_START) {
+    return methodHook.checkNativeMethod();
+}
 
 
 static JNINativeMethod gMethods[] = {
-        NATIVE_METHOD(WhaleRuntime, hookMethodNative,
-                      "(Ljava/lang/Class;Ljava/lang/reflect/Member;Ljava/lang/Object;)J"),
-        NATIVE_METHOD(WhaleRuntime, invokeOriginalMethodNative,
-                      "(JLjava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;"),
-        NATIVE_METHOD(WhaleRuntime, getMethodSlot, "(Ljava/lang/reflect/Member;)J"),
-        NATIVE_METHOD(WhaleRuntime, setObjectClassNative, "(Ljava/lang/Object;Ljava/lang/Class;)V"),
-        NATIVE_METHOD(WhaleRuntime, cloneToSubclassNative,
-                      "(Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;"),
-        NATIVE_METHOD(WhaleRuntime, removeFinalFlagNative,
-                      "(Ljava/lang/Class;)V"),
-        NATIVE_METHOD(WhaleRuntime, enforceDisableHiddenAPIPolicy, "()V"),
-        NATIVE_METHOD(WhaleRuntime, reserved0, "()V"),
-        NATIVE_METHOD(WhaleRuntime, reserved1, "()V")
+        NATIVE_METHOD(HTFixNative, htfixHookMethod,
+                      "(Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;)I"),
+        NATIVE_METHOD(HTFixNative, setup,
+                      "(ZI)V"),
+        NATIVE_METHOD(HTFixNative, checkHookMethod,
+                      "()Z"),
+        NATIVE_METHOD(HTFixNative, htfixNativeOne, "()V"),
+        NATIVE_METHOD(HTFixNative, htfixNativeTwo, "()V")
 };
 
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {

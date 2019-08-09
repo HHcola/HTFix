@@ -1,0 +1,5 @@
+E:/workspace/android/github-source/hook/HTFix/whooklib/.externalNativeBuild/cmake/debug/armeabi-v7a/CMakeFiles/edit_cache.dir
+E:/workspace/android/github-source/hook/HTFix/whooklib/.externalNativeBuild/cmake/debug/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+E:/workspace/android/github-source/hook/HTFix/whooklib/.externalNativeBuild/cmake/debug/armeabi-v7a/src/main/cpp/CMakeFiles/htfix.dir
+E:/workspace/android/github-source/hook/HTFix/whooklib/.externalNativeBuild/cmake/debug/armeabi-v7a/src/main/cpp/CMakeFiles/edit_cache.dir
+E:/workspace/android/github-source/hook/HTFix/whooklib/.externalNativeBuild/cmake/debug/armeabi-v7a/src/main/cpp/CMakeFiles/rebuild_cache.dir

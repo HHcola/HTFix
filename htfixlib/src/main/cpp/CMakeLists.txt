@@ -20,7 +20,6 @@ set(${PROJECT_NAME}_SOURCES
         hook/art/MethodHook.cpp
         hook/art/MethodTrampoline.cpp
         hook/dalvik/DalvikMethodReplace.cpp
-        hook/HTFixMethodHook.cpp
         hook/native_on_load.cpp
         )
 

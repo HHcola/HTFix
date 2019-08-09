@@ -1,0 +1,17 @@
+{
+  "buildFiles": [
+    "E:\\workspace\\android\\github-source\\hook\\HTFix\\whooklib\\CMakeLists.txt",
+    "E:\\workspace\\android\\github-source\\hook\\HTFix\\whooklib\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "E:\\workspace\\android\\android-sdk-windows\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\workspace\\android\\github-source\\hook\\HTFix\\whooklib\\.externalNativeBuild\\cmake\\debug\\armeabi-v7a --target clean"
+  ],
+  "libraries": {
+    "htfix-Debug-armeabi-v7a": {
+      "artifactName": "htfix",
+      "buildCommand": "E:\\workspace\\android\\android-sdk-windows\\cmake\\3.6.4111459\\bin\\cmake.exe --build E:\\workspace\\android\\github-source\\hook\\HTFix\\whooklib\\.externalNativeBuild\\cmake\\debug\\armeabi-v7a --target htfix",
+      "abi": "armeabi-v7a",
+      "output": "E:\\workspace\\android\\github-source\\hook\\HTFix\\whooklib\\build\\intermediates\\cmake\\debug\\obj\\armeabi-v7a\\libhtfix.so"
+    }
+  }
+}
