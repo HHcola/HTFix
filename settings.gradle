@@ -1,2 +1,2 @@
-include ':app', ':htfixlib', ':annotation', ':whooklib'
+include ':app', ':htfixlib', ':annotation'
 rootProject.name='HTFix'
