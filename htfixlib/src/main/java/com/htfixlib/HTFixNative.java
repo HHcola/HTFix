@@ -32,21 +32,20 @@ public class HTFixNative {
      *
      * @return true if initialize success
      */
-    public static boolean setup() {
+    public static void setup() {
         try {
             final String vmVersion = System.getProperty("java.vm.version");
             boolean isArt = vmVersion != null && vmVersion.startsWith("2");
             int apiLevel = Build.VERSION.SDK_INT;
             Log.d(TAG, "setup isArt = " + isArt + " apiLevel = " + apiLevel);
-            return setup(isArt, apiLevel);
+            setup(isArt, apiLevel);
         } catch (Exception e) {
             Log.e(TAG, "setup", e);
-            return false;
         }
     }
-    private static native boolean setup(boolean isArt, int apilevel);
-    private static native void checkHookMethod();
+    private static native void setup(boolean isArt, int apilevel);
 //    private static native void htfixInitNative(int sdk);
+    private static native boolean checkHookMethod();
     private static native int htfixHookMethod(Method targetMethod, Method hookMethod);
 
 

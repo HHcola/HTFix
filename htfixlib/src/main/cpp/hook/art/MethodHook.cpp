@@ -3,9 +3,8 @@
 #include "../../base/utils.h"
 #include "MethodTrampoline.h"
 #include "../../base/lock.h"
-#include "../HTFixMethodHook.h"
+#include "../native_on_load.h"
 
-#define CLASS_NAME "com/htfixlib/HTFixNative"
 
 namespace HTFix {
     void MethodHook::init(JNIEnv *jniEnv, int sdkVersion) {
@@ -37,11 +36,11 @@ namespace HTFix {
      * check native_offset_access_flags_ and native_jni_code_offset_
      */
     bool MethodHook::checkNativeMethod() {
-        checkField(native_offset_access_flags_, INT32_MAX);
-        checkField(native_jni_code_offset_, INT32_MAX);
+        CHECK_FIELD(native_offset_access_flags_, INT32_MAX);
+        CHECK_FIELD(native_jni_code_offset_, INT32_MAX);
 
-        checkField(native_offset_access_flags_, offset_access_flags_);
-        checkField(native_jni_code_offset_, offset_entry_point_from_jni_);
+        CHECK_FIELD(native_offset_access_flags_, offset_access_flags_);
+        CHECK_FIELD(native_jni_code_offset_, offset_entry_point_from_jni_);
         LOGD("checkNativeMethod true");
         return true;
     }
@@ -138,7 +137,7 @@ namespace HTFix {
                 break;
             }
         }
-        void *native_function = reinterpret_cast<void *>(Java_com_htfixlib_HTFixNative_htfixNativeOne);
+        void *native_function = reinterpret_cast<void *>(HTFixNative_htfixNativeOne);
 
         for (size_t offset = 0; offset != sizeof(size_t) * 24; offset += sizeof(size_t)) {
             if (MemberOf<ptr_t>(methodOne, offset) == native_function) {

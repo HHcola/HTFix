@@ -23,6 +23,13 @@ typedef void* ptr_t;
 
 #define NELEM(x) (sizeof(x)/sizeof((x)[0]))
 
+#define CHECK_FIELD(field, value)  \
+    if ((field) == (value)) {  \
+            LOGD("CHECK_FIELD fail"); \
+        return false;  \
+    }
+
+
 static bool checkField(size_t field, size_t value) {
     if ((field) == (value)) {
         return true;

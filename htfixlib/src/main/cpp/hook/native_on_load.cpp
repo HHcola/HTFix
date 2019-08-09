@@ -3,12 +3,6 @@
 #include "dalvik/DalvikMethodReplace.h"
 #include "art/MethodHook.h"
 
-#define CLASS_NAME "com/htfixlib/HTFixNative"
-
-#ifndef WHALE_ANDROID_AUTO_LOAD
-#define JNI_OnLoad Whale_OnLoad
-#endif
-
 HTFix::MethodHook methodHook;
 HTFix::DalvikMethodReplace dalvikMethodReplace;
 
@@ -32,7 +26,7 @@ HTFixNative_htfixHookMethod(JNI_START, jobject method_target, jobject method_hoo
 }
 
 
-static jint
+static void
 HTFixNative_setup(JNI_START, jboolean is_art, jint api_level) {
     isArt = is_art;
     if (is_art) {
@@ -60,6 +54,7 @@ static JNINativeMethod gMethods[] = {
 };
 
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
+    LOGE("JNI_OnLoad");
     JNIEnv *env = nullptr;
     if (vm->GetEnv(reinterpret_cast<void **>(&env), JNI_VERSION_1_4) != JNI_OK) {
         return -1;
@@ -74,4 +69,13 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
         return JNI_ERR;
     }
     return JNI_VERSION_1_4;
+}
+
+
+JNIEXPORT void JNICALL JNI_OnUnload(JavaVM *vm, void *reserved) {
+    JNIEnv *env = nullptr;
+    jint ret = vm->GetEnv(reinterpret_cast<void **>(&env), JNI_VERSION_1_4);
+    if (ret != JNI_OK) {
+        return ;
+    }
 }
