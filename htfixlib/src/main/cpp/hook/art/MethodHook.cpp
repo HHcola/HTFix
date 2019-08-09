@@ -124,16 +124,16 @@ namespace HTFix {
     void MethodHook::setHTFixNative(JNIEnv *env) {
         size_t expected_access_flags = Constants::kAccPrivate | Constants::kAccStatic | Constants::kAccNative;
         jclass java_class = env->FindClass(CLASS_NAME);
-        if (cl == nullptr) {
+        if (java_class == nullptr) {
             LOGE("FindClass failed for = %s", CLASS_NAME);
             return;
         }
 
-        jmethodID reserved0 = env->GetStaticMethodID(java_class, Constants::kMethodHTFixOne, "()V");
-        jmethodID reserved1 = env->GetStaticMethodID(java_class, Constants::kMethodHTFixTwo, "()V");
+        jmethodID methodOne = env->GetStaticMethodID(java_class, Constants::kMethodHTFixOne, "()V");
+        jmethodID methodTwo = env->GetStaticMethodID(java_class, Constants::kMethodHTFixTwo, "()V");
 
         for (size_t offset = 0; offset != sizeof(size_t) * 24; offset += sizeof(size_t)) {
-            if (MemberOf<size_t>(reserved0, offset) == expected_access_flags) {
+            if (MemberOf<size_t>(methodOne, offset) == expected_access_flags) {
                 native_offset_access_flags_ = offset;
                 break;
             }
@@ -141,7 +141,7 @@ namespace HTFix {
         void *native_function = reinterpret_cast<void *>(Java_com_htfixlib_HTFixNative_htfixNativeOne);
 
         for (size_t offset = 0; offset != sizeof(size_t) * 24; offset += sizeof(size_t)) {
-            if (MemberOf<ptr_t>(reserved0, offset) == native_function) {
+            if (MemberOf<ptr_t>(methodOne, offset) == native_function) {
                 native_jni_code_offset_ = offset;
                 break;
             }

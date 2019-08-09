@@ -16,6 +16,7 @@
 typedef void* ptr_t;
 #define OPEN_API __attribute__((visibility("default")))
 #define JNI_START JNIEnv *env, jclass cl
+#define roundUpToPtrSize(v) (v + pointer_size - 1 - ((v + pointer_size - 1) & (pointer_size - 1)))
 
 #define CHECK_FIELD(field, value)  \
     if ((field) == (value)) {  \
@@ -23,7 +24,6 @@ typedef void* ptr_t;
         return false;  \
     }
 
-#define roundUpToPtrSize(v) (v + pointer_size - 1 - ((v + pointer_size - 1) & (pointer_size - 1)))
 static inline uint32_t read32(void *addr) {
     return *((uint32_t *) addr);
 }
