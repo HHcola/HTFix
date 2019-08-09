@@ -39,7 +39,7 @@ public class HTFixHook {
 
     public static synchronized void hookHTFix(Method targetMethod, Method hookMethod) {
         resolveStaticMethod(targetMethod);
-        HTFixNative.htfixHookMethod(targetMethod, hookMethod);
+        HTFixNative.nativeHookMethod(targetMethod, hookMethod);
     }
 
     //disable JIT/AOT Profile

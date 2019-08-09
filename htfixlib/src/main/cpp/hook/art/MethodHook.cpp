@@ -3,6 +3,9 @@
 #include "../../base/utils.h"
 #include "MethodTrampoline.h"
 #include "../../base/lock.h"
+#include "../HTFixMethodHook.h"
+
+#define CLASS_NAME "com/htfixlib/HTFixNative"
 
 namespace HTFix {
     void MethodHook::init(JNIEnv *jniEnv, int sdkVersion) {
@@ -14,6 +17,7 @@ namespace HTFix {
         setEntryPointFromJni();
         setDexCacheResolvedMethods();
         setAccCompileDontBother();
+        setHTFixNative(jniEnv);
     }
 
 
@@ -27,6 +31,21 @@ namespace HTFix {
             return artTramReplaceMethod(targetMethod, hookMethod);
         }
     }
+
+
+    /**
+     * check native_offset_access_flags_ and native_jni_code_offset_
+     */
+    bool MethodHook::checkNativeMethod() {
+        CHECK_FIELD(native_offset_access_flags_, INT32_MAX);
+        CHECK_FIELD(native_jni_code_offset_, INT32_MAX);
+
+        CHECK_FIELD(native_offset_access_flags_, offset_access_flags_);
+        CHECK_FIELD(native_jni_code_offset_, offset_entry_point_from_jni_);
+        LOGD("checkNativeMethod true");
+        return true;
+    }
+
 
     void MethodHook::setArtMethodSize(JNIEnv *jniEnv) {
         jclass sizeTestClass = jniEnv->FindClass("com/htfixlib/ArtMethodSize");
@@ -101,6 +120,38 @@ namespace HTFix {
             kAccCompileDontBother = 0x02000000;
         }
     }
+
+    void MethodHook::setHTFixNative(JNIEnv *env) {
+        size_t expected_access_flags = Constants::kAccPrivate | Constants::kAccStatic | Constants::kAccNative;
+        jclass java_class = env->FindClass(CLASS_NAME);
+        if (cl == nullptr) {
+            LOGE("FindClass failed for = %s", CLASS_NAME);
+            return;
+        }
+
+        jmethodID reserved0 = env->GetStaticMethodID(java_class, Constants::kMethodHTFixOne, "()V");
+        jmethodID reserved1 = env->GetStaticMethodID(java_class, Constants::kMethodHTFixTwo, "()V");
+
+        for (size_t offset = 0; offset != sizeof(size_t) * 24; offset += sizeof(size_t)) {
+            if (MemberOf<size_t>(reserved0, offset) == expected_access_flags) {
+                native_offset_access_flags_ = offset;
+                break;
+            }
+        }
+        void *native_function = reinterpret_cast<void *>(Java_com_htfixlib_HTFixNative_htfixNativeOne);
+
+        for (size_t offset = 0; offset != sizeof(size_t) * 24; offset += sizeof(size_t)) {
+            if (MemberOf<ptr_t>(reserved0, offset) == native_function) {
+                native_jni_code_offset_ = offset;
+                break;
+            }
+        }
+
+        LOGD("setHTFixNative native_offset_access_flags_ = %d, native_jni_code_offset_ = %d", native_offset_access_flags_, native_jni_code_offset_);
+        LOGD("setHTFixNative offset_access_flags_ = %d, offset_entry_point_from_jni_ = %d", offset_access_flags_, offset_entry_point_from_jni_);
+    }
+
+
 
     void MethodHook::setEntryPointFromJni() {
         if (sdkVersion >= __ANDROID_API_L_MR1__ && sdkVersion <= __ANDROID_API_N__) {
@@ -272,7 +323,6 @@ namespace HTFix {
 
         return 1;
     }
-
 
 
 

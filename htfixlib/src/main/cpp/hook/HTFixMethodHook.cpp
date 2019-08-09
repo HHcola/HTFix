@@ -1,16 +1,15 @@
-#include "jni.h"
 #include "art/MethodHook.h"
 #include "dalvik/DalvikMethodReplace.h"
-
+#include "HTFixMethodHook.h"
 HTFix::MethodHook methodHook;
 HTFix::DalvikMethodReplace dalvikMethodReplace;
 static bool isArt = true;
 
-extern "C"
-JNIEXPORT void JNICALL
-Java_com_htfixlib_HTFixNative_htfixInitNative(JNIEnv *env, jclass type, jint sdk) {
-    methodHook.init(env, sdk);
-}
+//extern "C"
+//JNIEXPORT void JNICALL
+//Java_com_htfixlib_HTFixNative_htfixInitNative(JNIEnv *env, jclass type, jint sdk) {
+//    methodHook.init(env, sdk);
+//}
 
 extern "C"
 JNIEXPORT jint JNICALL
@@ -36,3 +35,23 @@ Java_com_htfixlib_HTFixNative_setup(JNIEnv *env, jclass clazz, jboolean is_art, 
         dalvikMethodReplace.dalvik_setup(env, apilevel);
     }
 }
+
+extern "C"
+JNIEXPORT jboolean JNICALL
+Java_com_htfixlib_HTFixNative_checkHookMethod(JNIEnv *env, jclass clazz) {
+    return methodHook.checkNativeMethod();
+}
+
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_htfixlib_HTFixNative_htfixNativeOne(JNIEnv *env, jclass clazz) {
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_htfixlib_HTFixNative_htfixNativeTwo(JNIEnv *env, jclass clazz) {
+}
+
+
+//extern "C" OPEN_API void Java_com_htfixlib_HTFixNative_htfixNativeOne(JNI_START) {}
