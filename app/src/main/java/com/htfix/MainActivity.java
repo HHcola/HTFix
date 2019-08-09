@@ -19,13 +19,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.hook).setOnClickListener(this);
         findViewById(R.id.hook_cany).setOnClickListener(this);
         findViewById(R.id.start_activity).setOnClickListener(this);
-        BaseInputConnectionReplace.hookBaseInputConnectionReplace();
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.hook) {
-//            BaseInputConnectionReplace.hookBaseInputConnectionReplace();
+            BaseInputConnectionReplace.hookBaseInputConnectionReplace();
         } else if (v.getId() == R.id.start_activity) {
             startActivity();
         } else if (v.getId() == R.id.hook_cany) {

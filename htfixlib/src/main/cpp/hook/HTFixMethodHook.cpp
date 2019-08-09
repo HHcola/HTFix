@@ -5,12 +5,6 @@ HTFix::MethodHook methodHook;
 HTFix::DalvikMethodReplace dalvikMethodReplace;
 static bool isArt = true;
 
-//extern "C"
-//JNIEXPORT void JNICALL
-//Java_com_htfixlib_HTFixNative_htfixInitNative(JNIEnv *env, jclass type, jint sdk) {
-//    methodHook.init(env, sdk);
-//}
-
 extern "C"
 JNIEXPORT jint JNICALL
 Java_com_htfixlib_HTFixNative_htfixHookMethod(JNIEnv *env, jclass clazz, jobject target_method,

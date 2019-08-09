@@ -37,11 +37,11 @@ namespace HTFix {
      * check native_offset_access_flags_ and native_jni_code_offset_
      */
     bool MethodHook::checkNativeMethod() {
-        CHECK_FIELD(native_offset_access_flags_, INT32_MAX);
-        CHECK_FIELD(native_jni_code_offset_, INT32_MAX);
+        checkField(native_offset_access_flags_, INT32_MAX);
+        checkField(native_jni_code_offset_, INT32_MAX);
 
-        CHECK_FIELD(native_offset_access_flags_, offset_access_flags_);
-        CHECK_FIELD(native_jni_code_offset_, offset_entry_point_from_jni_);
+        checkField(native_offset_access_flags_, offset_access_flags_);
+        checkField(native_jni_code_offset_, offset_entry_point_from_jni_);
         LOGD("checkNativeMethod true");
         return true;
     }

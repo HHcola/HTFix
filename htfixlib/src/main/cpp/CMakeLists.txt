@@ -21,6 +21,7 @@ set(${PROJECT_NAME}_SOURCES
         hook/art/MethodTrampoline.cpp
         hook/dalvik/DalvikMethodReplace.cpp
         hook/HTFixMethodHook.cpp
+        hook/native_on_load.cpp
         )
 
 add_definitions(-std=c++11)

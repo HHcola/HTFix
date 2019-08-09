@@ -18,11 +18,17 @@ typedef void* ptr_t;
 #define JNI_START JNIEnv *env, jclass cl
 #define roundUpToPtrSize(v) (v + pointer_size - 1 - ((v + pointer_size - 1) & (pointer_size - 1)))
 
-#define CHECK_FIELD(field, value)  \
-    if ((field) == (value)) {  \
-        LOGE("Failed to find %d", field);  \
-        return false;  \
+#define NATIVE_METHOD(className, functionName, signature) \
+    { #functionName, signature, reinterpret_cast<void*>(className ## _ ## functionName) }
+
+#define NELEM(x) (sizeof(x)/sizeof((x)[0]))
+
+static bool checkField(size_t field, size_t value) {
+    if ((field) == (value)) {
+        return true;
     }
+    return false;
+}
 
 static inline uint32_t read32(void *addr) {
     return *((uint32_t *) addr);
