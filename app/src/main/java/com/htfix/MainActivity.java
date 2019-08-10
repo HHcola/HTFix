@@ -4,8 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.BaseInputConnection;
 
 import com.htfix.hook.BaseInputConnectionReplace;
+import com.htfix.hook.HookMethodInfo;
+
+import lab.galaxy.yahfa.HookMain;
+
 public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
@@ -28,7 +33,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         } else if (v.getId() == R.id.start_activity) {
             startActivity();
         } else if (v.getId() == R.id.hook_cany) {
-//            Hook.hook(getPackageName());
+            hookCany();
         }
     }
 
@@ -36,4 +41,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
         Intent intent = new Intent(this, InputConnectionActivity.class);
         this.startActivity(intent);
     }
+
+    private void hookCany() {
+        try {
+            ClassLoader classLoader = getClassLoader();
+            ClassLoader originClassLoader = BaseInputConnection.class.getClassLoader();
+            HookMain.doHookDefault(HookMethodInfo.class.getName(), classLoader, originClassLoader);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

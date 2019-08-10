@@ -45,7 +45,7 @@ namespace HTFix {
     // android 7.1 android 7.0
     class ArtMethod_25_24 {
     protected:
-        void declaring_class_;
+        void * declaring_class_;
 
         // Access flags; low 16 bits are defined by spec.
         uint32_t access_flags_;

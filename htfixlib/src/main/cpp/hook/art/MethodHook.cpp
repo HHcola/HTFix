@@ -22,7 +22,7 @@ namespace HTFix {
 
 
     int MethodHook::doHookMethod(void *targetMethod, void *hookMethod) {
-        LOGD("doHookMethod sdkVersion = %d", sdkVersion);
+        LOGD("doHookMethod sdkVersion = %d, targetMethod = %p, hookMethod = %p", sdkVersion, targetMethod, hookMethod);
         if (sdkVersion < __ANDROID_API_K__) {
           // don't support
           // 4.4--7.0(OAT compile can replace direct)
@@ -180,9 +180,7 @@ namespace HTFix {
         }
         int access_flags = read32((char *) method + offset_access_flags_);
         LOGI("setNonCompilable: access flags is 0x%x, offset_access_flags_ = %d", access_flags, offset_access_flags_);
-//        access_flags |= kAccCompileDontBother;
         access_flags |= kAccCompileDontBother;
-        access_flags |= 0x00800000;
         LOGI("setNonCompilable: access flags and kAccCompileDontBother is 0x%x", access_flags);
         memcpy(
                 (char *) method + offset_access_flags_,
@@ -191,7 +189,6 @@ namespace HTFix {
         );
     }
     void MethodHook::disableInterpreterForO(void *method) {
-//        if (SDK_INT >= ANDROID_O && DEBUG) {
            if (sdkVersion >= __ANDROID_API_O__) {
                 setNative(method);
         }
