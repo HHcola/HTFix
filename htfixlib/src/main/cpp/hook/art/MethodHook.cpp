@@ -26,9 +26,7 @@ namespace HTFix {
         if (sdkVersion < __ANDROID_API_K__) {
           // don't support
           // 4.4--7.0(OAT compile can replace direct)
-        } else if (sdkVersion >= __ANDROID_API_K__ && sdkVersion <= __ANDROID_API_N__) {
-            return artReplaceMethod(targetMethod, hookMethod);
-        } else {
+        }  else {
             return artTramReplaceMethod(targetMethod, hookMethod);
         }
     }
@@ -299,32 +297,4 @@ namespace HTFix {
         flushCache(targetMethod);
         return 1;
     }
-
-    int MethodHook::artReplaceMethod(void *targetMethod, void *hookMethod) {
-        if (artMethodSize <= 0) {
-            LOGD("artReplaceMethod error artMethodSize is zero");
-            return 0;
-        }
-
-        for (int i = 0; i < artMethodSize; i ++) {
-            LOGD("artReplaceMethod befor targetMethod i = %d, value = 0x%x", i, *((char *)targetMethod + i));
-        }
-
-        for (int i = 0; i < artMethodSize; i ++) {
-            LOGD("artReplaceMethod befor hookMethod i = %d, value = 0x%x", i, *((char *)hookMethod + i));
-        }
-        memcpy(targetMethod,
-                hookMethod,
-                artMethodSize
-        );
-
-        for (int i = 0; i < artMethodSize; i ++) {
-            LOGD("artReplaceMethod after targetMethod i = %d, value = 0x%x", i, *((char *)targetMethod + i));
-        }
-
-        return 1;
-    }
-
-
-
 }

@@ -49,7 +49,6 @@ namespace HTFix {
 
     private:
         int artTramReplaceMethod(void *targetMethod, void *hookMethod);
-        int artReplaceMethod(void *targetMethod, void *hookMethod);
     private:
         int sdkVersion;
         int kAccCompileDontBother = 0x01000000;
