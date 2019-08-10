@@ -44,7 +44,7 @@ public class HTFixNative {
         }
     }
     private static native void setup(boolean isArt, int apilevel);
-//    private static native void htfixInitNative(int sdk);
+//    private static native void htfixInit(int sdk);
     private static native boolean checkHookMethod();
     private static native int htfixHookMethod(Method targetMethod, Method hookMethod);
 

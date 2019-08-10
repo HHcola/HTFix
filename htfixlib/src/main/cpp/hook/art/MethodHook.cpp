@@ -32,21 +32,6 @@ namespace HTFix {
     }
 
 
-    /**
-     * check native_offset_access_flags_ and native_jni_code_offset_
-     */
-    bool MethodHook::checkNativeMethod() {
-        if (sdkVersion > __ANDROID_API_N__) {
-            CHECK_EQUAL(native_offset_access_flags_, offset_access_flags_);
-            CHECK_EQUAL(native_jni_code_offset_, offset_entry_point_from_jni_);
-            LOGD("checkNativeMethod true");
-            return true;
-        } else {
-            return true;
-        }
-    }
-
-
     void MethodHook::setArtMethodSize(JNIEnv *jniEnv) {
         jclass sizeTestClass = jniEnv->FindClass("com/htfixlib/ArtMethodSize");
         Size artMethod1 = (Size) jniEnv->GetStaticMethodID(sizeTestClass, "method1", "()V");
@@ -55,75 +40,137 @@ namespace HTFix {
         LOGD("setArtMethodSize size = %d", artMethodSize);
     }
 
+    /**
+     * sdk version >= __ANDROID_API_N__(24 android 7.0)
+     */
     void MethodHook::setAccessFlags() {
         switch (sdkVersion) {
-            case __ANDROID_API_L__:
-                offset_access_flags_ = 56;
-                break;
-            case __ANDROID_API_L_MR1__:
-                offset_access_flags_ = 20;
+            case __ANDROID_API_Q__:
+            case __ANDROID_API_P__:
+            case __ANDROID_API_O_MR1__:
+            case __ANDROID_API_O__:
+            case __ANDROID_API_N_MR1__:
+            case __ANDROID_API_N__:
+                offset_access_flags_ = 4;
                 break;
             case __ANDROID_API_M__:
-            case __ANDROID_API_N__:
-            case __ANDROID_API_N_MR1__:
-            case __ANDROID_API_O__:
-            case __ANDROID_API_O_MR1__:
-            case __ANDROID_API_P__:
-            case __ANDROID_API_Q__:
-                offset_access_flags_ = 4;
+            case __ANDROID_API_L_MR1__:
+                offset_access_flags_ = 3 * BYTE_POINT;
+                break;
+            case __ANDROID_API_L__:
+                offset_access_flags_ = 4 * BYTE_POINT + 2 * 8 + BYTE_POINT + 8;
                 break;
             default:
-                offset_access_flags_ = 4;
                 break;
         }
         LOGD("setAccessFlags offset = %d", offset_access_flags_);
     }
 
     void MethodHook::setEntryPointQuickCompliedCode() {
-        if (sdkVersion >= __ANDROID_API_M__) {
-            offset_entry_point_from_quick_compiled_code_ =  getArtMethodSize() - BYTE_POINT;
-        } else if (sdkVersion <= __ANDROID_API_L__) {
-            offset_entry_point_from_quick_compiled_code_ = getArtMethodSize() - 4 - 2 * BYTE_POINT;
-        } else {
-            // get error address of ANDROID_P and ANDROID_Q
-            offset_entry_point_from_quick_compiled_code_ = getArtMethodSize() - 4 - 2 * BYTE_POINT;
+        switch (sdkVersion) {
+            case __ANDROID_API_Q__:
+            case __ANDROID_API_P__:
+            case __ANDROID_API_O_MR1__:
+            case __ANDROID_API_O__:
+            case __ANDROID_API_N_MR1__:
+            case __ANDROID_API_N__:
+                offset_entry_point_from_quick_compiled_code_ =  getArtMethodSize() - BYTE_POINT;
+                break;
+            case __ANDROID_API_M__:
+                offset_entry_point_from_quick_compiled_code_ =  getArtMethodSize() - BYTE_POINT;
+                break;
+            case __ANDROID_API_L_MR1__:
+                offset_entry_point_from_quick_compiled_code_ = getArtMethodSize() - BYTE_POINT;
+                break;
+            case __ANDROID_API_L__:
+                offset_entry_point_from_quick_compiled_code_ = 4 * BYTE_POINT + 2 * 8;
+                break;
+            default:
+                break;
         }
         LOGD("setEntryPointQuickCompliedCode offset = %d", offset_entry_point_from_quick_compiled_code_);
     }
 
     void MethodHook::setEntryPointInterpreter() {
-        if (sdkVersion >= __ANDROID_API_L_MR1__ && sdkVersion <= __ANDROID_API_M__)
-            offset_entry_point_from_interpreter_ = getArtMethodSize() - 3 * BYTE_POINT;
-        else if (sdkVersion <= __ANDROID_API_L__) {
-            offset_entry_point_from_interpreter_ = getArtMethodSize() - 4 * 8 - 4 * 4;
-        } else {
-            offset_entry_point_from_interpreter_ = 0;
+        switch (sdkVersion) {
+            case __ANDROID_API_Q__:
+            case __ANDROID_API_P__:
+            case __ANDROID_API_O_MR1__:
+            case __ANDROID_API_O__:
+            case __ANDROID_API_N_MR1__:
+            case __ANDROID_API_N__:
+                break;
+            case __ANDROID_API_M__:
+            case __ANDROID_API_L_MR1__:
+                offset_entry_point_from_interpreter_ =  getArtMethodSize() - 3 * BYTE_POINT;
+                break;
+            case __ANDROID_API_L__:
+                offset_entry_point_from_interpreter_ = 4 * BYTE_POINT;
+                break;
+            default:
+                break;
         }
         LOGD("setEntryPointInterpreter offset = %d", offset_entry_point_from_interpreter_);
     }
 
     void MethodHook::setDexCacheResolvedMethods() {
-        if (sdkVersion >= __ANDROID_API_P__) {
-            offset_dex_cache_resolved_methods_ = getArtMethodSize() + 1;
-        }else if (sdkVersion == __ANDROID_API_M__) {
-            offset_dex_cache_resolved_methods_ = 4;
-        } else if (sdkVersion >= __ANDROID_API_L__ && sdkVersion <= __ANDROID_API_L_MR1__) {
-            offset_dex_cache_resolved_methods_ = 4 * 3;
-        } else {
-            offset_dex_cache_resolved_methods_ = getArtMethodSize() + 1;
+
+        switch (sdkVersion) {
+            case __ANDROID_API_Q__:
+            case __ANDROID_API_P__:
+                break;
+            case __ANDROID_API_O_MR1__:
+            case __ANDROID_API_O__:
+                offset_dex_cache_resolved_methods_ =  getArtMethodSize() - 3 * BYTE_POINT;
+                break;
+            case __ANDROID_API_N_MR1__:
+            case __ANDROID_API_N__:
+                offset_dex_cache_resolved_methods_ =  getArtMethodSize() - 4 * BYTE_POINT;
+                break;
+            case __ANDROID_API_M__:
+                offset_dex_cache_resolved_methods_ =  4;
+                break;
+            case __ANDROID_API_L_MR1__:
+            case __ANDROID_API_L__:
+                offset_dex_cache_resolved_methods_ = 4 * 2 + 4;
+                break;
+            default:
+                break;
         }
+
         LOGD("setDexCacheResolvedMethods offset = %d", offset_dex_cache_resolved_methods_);
     }
 
     void MethodHook::setAccCompileDontBother() {
-        if (sdkVersion == __ANDROID_API_P__ || sdkVersion == __ANDROID_API_O_MR1__) {
-            kAccCompileDontBother = 0x02000000;
+        switch (sdkVersion) {
+            case __ANDROID_API_Q__:
+            case __ANDROID_API_P__:
+                break;
+            case __ANDROID_API_O_MR1__:
+            case __ANDROID_API_O__:
+                kAccCompileDontBother = 0x02000000;
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+ * check native_offset_access_flags_ and native_jni_code_offset_
+ */
+    bool MethodHook::checkNativeMethod() {
+        if (sdkVersion >= __ANDROID_API_L__) {
+            CHECK_EQUAL(native_offset_access_flags_, offset_access_flags_);
+            CHECK_EQUAL(native_jni_code_offset_, offset_entry_point_from_jni_);
+            LOGD("checkNativeMethod true");
+            return true;
+        } else {
+            return false;
         }
     }
 
     void MethodHook::setHTFixNative(JNIEnv *env) {
-        // 8.0
-        if (sdkVersion > __ANDROID_API_N__) {
+        if (sdkVersion >= __ANDROID_API_L__) {
             size_t expected_access_flags = Constants::kAccPrivate | Constants::kAccStatic | Constants::kAccNative;
             jclass java_class = env->FindClass(CLASS_NAME);
             if (java_class == nullptr) {
@@ -156,10 +203,26 @@ namespace HTFix {
 
 
     void MethodHook::setEntryPointFromJni() {
-        if (sdkVersion >= __ANDROID_API_L_MR1__ && sdkVersion <= __ANDROID_API_N__) {
-            offset_entry_point_from_jni_ = getArtMethodSize() - 2 * BYTE_POINT;
-        } else {
-            offset_entry_point_from_jni_ = getArtMethodSize() - 2 * BYTE_POINT; // TODO
+        switch (sdkVersion) {
+            case __ANDROID_API_Q__:
+            case __ANDROID_API_P__:
+            case __ANDROID_API_O_MR1__:
+            case __ANDROID_API_O__:
+                offset_entry_point_from_jni_ = getArtMethodSize() - 2 * BYTE_POINT;
+                break;
+            case __ANDROID_API_N_MR1__:
+            case __ANDROID_API_N__:
+                offset_entry_point_from_jni_ = getArtMethodSize() - 2 * BYTE_POINT;
+                break;
+            case __ANDROID_API_M__:
+                offset_entry_point_from_jni_ = getArtMethodSize() - 2 * BYTE_POINT;
+                break;
+            case __ANDROID_API_L_MR1__:
+            case __ANDROID_API_L__:
+                offset_entry_point_from_jni_ = getArtMethodSize() - 2 * BYTE_POINT;
+                break;
+            default:
+                break;
         }
     }
     void MethodHook::setSdkVersioin(int sdkVersion) {
@@ -187,8 +250,8 @@ namespace HTFix {
         );
     }
     void MethodHook::disableInterpreterForO(void *method) {
-           if (sdkVersion >= __ANDROID_API_O__) {
-                setNative(method);
+        if (sdkVersion >= __ANDROID_API_O__) {
+            setNative(method);
         }
     }
     void MethodHook::setNative(void *method) {
@@ -278,7 +341,6 @@ namespace HTFix {
         unsigned char * code = methodReplacementTrampoline->getCode();
         size_t address = reinterpret_cast<size_t>(methodReplacementTrampoline->getCode());
         if (methodReplacementTrampoline != nullptr) {
-
             memcpy((char *) targetMethod + offset_entry_point_from_quick_compiled_code_,
                    &address,
                    pointer_size);
