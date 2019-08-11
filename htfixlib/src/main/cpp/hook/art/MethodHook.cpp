@@ -143,12 +143,27 @@ namespace HTFix {
 
     void MethodHook::setAccCompileDontBother() {
         switch (sdkVersion) {
+            // http://androidxref.com/9.0.0_r3/xref/art/libdexfile/dex/modifiers.h
+            // static constexpr uint32_t kAccCompileDontBother =     0x02000000;  // method (runtime)
             case __ANDROID_API_Q__:
             case __ANDROID_API_P__:
+                kAccCompileDontBother = 0x02000000;
                 break;
             case __ANDROID_API_O_MR1__:
-            case __ANDROID_API_O__:
+                // http://androidxref.com/8.1.0_r33/xref/art/runtime/modifiers.h
+                // static constexpr uint32_t kAccCompileDontBother =     0x02000000;  // method (runtime)
                 kAccCompileDontBother = 0x02000000;
+                break;
+            case __ANDROID_API_O__:
+                // http://androidxref.com/8.0.0_r4/xref/art/runtime/modifiers.h
+                // static constexpr uint32_t kAccCompileDontBother =     0x01000000;  // method (runtime)
+                kAccCompileDontBother = 0x01000000;
+                break;
+            case __ANDROID_API_N_MR1__:
+            case __ANDROID_API_N__:
+                // http://androidxref.com/7.0.0_r1/xref/art/runtime/modifiers.h
+                // static constexpr uint32_t kAccCompileDontBother =     0x01000000;  // method (runtime)
+                kAccCompileDontBother = 0x01000000;
                 break;
             default:
                 break;
