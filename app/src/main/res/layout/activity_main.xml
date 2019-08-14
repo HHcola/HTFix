@@ -30,6 +30,13 @@
         android:layout_centerHorizontal="true"
         android:text="start activity"
         />
-
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/start_activity"
+        android:layout_centerHorizontal="true"
+        android:textSize="13sp"
+        />
 
 </RelativeLayout>

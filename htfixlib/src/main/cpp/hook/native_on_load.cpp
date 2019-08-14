@@ -36,6 +36,13 @@ HTFixNative_setup(JNI_START, jboolean is_art, jint api_level) {
     }
 }
 
+static void
+HTFixNative_clearHotnessCount(JNI_START, jobject method_target) {
+    void* target = reinterpret_cast<void *>(env->FromReflectedMethod(method_target));
+    methodHook.clearHotnessCount(target);
+}
+
+
 static jboolean
 HTFixNative_checkHookMethod(JNI_START) {
     return methodHook.checkNativeMethod();
@@ -49,6 +56,8 @@ static JNINativeMethod gMethods[] = {
                       "(ZI)V"),
         NATIVE_METHOD(HTFixNative, checkHookMethod,
                       "()Z"),
+        NATIVE_METHOD(HTFixNative, clearHotnessCount,
+                      "(Ljava/lang/reflect/Method;)V"),
         NATIVE_METHOD(HTFixNative, htfixNativeOne, "()V"),
         NATIVE_METHOD(HTFixNative, htfixNativeTwo, "()V")
 };

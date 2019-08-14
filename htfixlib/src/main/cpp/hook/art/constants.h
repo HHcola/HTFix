@@ -17,7 +17,6 @@ namespace HTFix {
         static constexpr size_t kAccAbstract = 0x0400;  // class, method, ic
 
 
-
         static constexpr const char *kMethodHTFixOne = "htfixNativeOne";
         static constexpr const char *kMethodHTFixTwo = "htfixNativeTwo";
     }

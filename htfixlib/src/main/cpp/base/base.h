@@ -30,6 +30,10 @@ typedef void* ptr_t;
         return false;  \
     }
 
+static inline uint16_t read16(void *addr) {
+    return *((uint16_t *) addr);
+}
+
 static inline uint32_t read32(void *addr) {
     return *((uint32_t *) addr);
 }

@@ -17,11 +17,15 @@
 namespace HTFix {
 #define MMAP_PAGE_SIZE sysconf(_SC_PAGESIZE)
 #define EXE_BLOCK_SIZE MMAP_PAGE_SIZE
+
+
+
     class MethodHook {
     public:
         void init(JNIEnv *jniEnv, int sdkVersion);
         int doHookMethod(void *targetMethod, void *hookMethod);
         bool checkNativeMethod();
+        void clearHotnessCount(void *targetMethod);
     private:
         void setSdkVersioin(int sdkVersion);
         void setArtMethodSize(JNIEnv *jniEnv);
@@ -31,6 +35,7 @@ namespace HTFix {
         void setEntryPointFromJni();
         void setDexCacheResolvedMethods();
         void setAccCompileDontBother();
+        void setHotnessCount();
         void setHTFixNative(JNIEnv *env);
 
         size_t getArtMethodSize();
@@ -54,6 +59,7 @@ namespace HTFix {
         int kAccCompileDontBother = 0x01000000;
         size_t artMethodSize;
         size_t offset_access_flags_;
+        size_t offset_hotness_count_;
 
         size_t offset_entry_point_from_quick_compiled_code_;
         size_t offset_dex_cache_resolved_methods_;

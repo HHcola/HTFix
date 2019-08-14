@@ -26,6 +26,7 @@ public class HTFixNative {
         return -1;
     }
 
+    public static native void clearHotnessCount(Method targetMethod);
 
     /**
      * initialize
@@ -47,7 +48,6 @@ public class HTFixNative {
 //    private static native void htfixInit(int sdk);
     private static native boolean checkHookMethod();
     private static native int htfixHookMethod(Method targetMethod, Method hookMethod);
-
 
     private static native void htfixNativeOne();
     private static native void htfixNativeTwo();

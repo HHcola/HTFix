@@ -6,12 +6,14 @@
 #include "../native_on_load.h"
 #include "ArtMethod.h"
 
-
+typedef uint16_t u2;
+typedef uint32_t u4;
 namespace HTFix {
     void MethodHook::init(JNIEnv *jniEnv, int sdkVersion) {
         setSdkVersioin(sdkVersion);
         setArtMethodSize(jniEnv);
         setAccessFlags();
+        setHotnessCount();
         setEntryPointQuickCompliedCode();
         setEntryPointInterpreter();
         setEntryPointFromJni();
@@ -65,6 +67,28 @@ namespace HTFix {
         }
         LOGD("setAccessFlags offset = %d", offset_access_flags_);
     }
+
+    void MethodHook::setHotnessCount() {
+        switch (sdkVersion) {
+            case __ANDROID_API_Q__:
+            case __ANDROID_API_P__:
+            case __ANDROID_API_O_MR1__:
+            case __ANDROID_API_O__:
+            case __ANDROID_API_N_MR1__:
+            case __ANDROID_API_N__:
+                offset_hotness_count_ = offset_access_flags_ + sizeof(u4) * 3 + sizeof(u2);
+                break;
+            case __ANDROID_API_M__:
+            case __ANDROID_API_L_MR1__:
+                break;
+            case __ANDROID_API_L__:
+                break;
+            default:
+                break;
+        }
+        LOGD("setHotnessCount offset = %d", offset_hotness_count_);
+    }
+
 
     void MethodHook::setEntryPointQuickCompliedCode() {
         switch (sdkVersion) {
@@ -184,6 +208,7 @@ namespace HTFix {
         }
     }
 
+
     void MethodHook::setHTFixNative(JNIEnv *env) {
         if (sdkVersion >= __ANDROID_API_L__) {
             size_t expected_access_flags = Constants::kAccPrivate | Constants::kAccStatic | Constants::kAccNative;
@@ -250,14 +275,31 @@ namespace HTFix {
     size_t MethodHook::getQuickCompliedOffset() {
         return offset_entry_point_from_quick_compiled_code_;
     }
+
+    void MethodHook::clearHotnessCount(void *targetMethod) {
+        if (sdkVersion >= __ANDROID_API_N__ && targetMethod != NULL) {
+            u2 access_flags = 0;
+            uint16_t value = read16((char *) targetMethod + offset_hotness_count_);
+            LOGD("clearHotnessCount offset_hotness_count_ %d, hotness_count = %d", offset_hotness_count_, value);
+            memcpy(
+                    (char *) targetMethod + offset_hotness_count_,
+                    &access_flags,
+                    sizeof(u2)
+            );
+            uint16_t clearValue = read16((char *) targetMethod + offset_hotness_count_);
+            LOGD("clearHotnessCount %d", clearValue);
+        }
+    }
+
+
     void MethodHook::setNonCompilable(void *method) {
         if (sdkVersion < __ANDROID_API_N__) {
             return;
         }
         int access_flags = read32((char *) method + offset_access_flags_);
-        LOGI("setNonCompilable: access flags is 0x%x, offset_access_flags_ = %d", access_flags, offset_access_flags_);
+        LOGI("setNonCompilable: access flags is 0x%x, offset_access_flags_ = %d, kAccCompileDontBother= 0x%x", access_flags, offset_access_flags_, kAccCompileDontBother);
         access_flags |= kAccCompileDontBother;
-        LOGI("setNonCompilable: access flags and kAccCompileDontBother is 0x%x", access_flags);
+        LOGI("setNonCompilable: access flags and access_flags is 0x%x", access_flags);
         memcpy(
                 (char *) method + offset_access_flags_,
                 &access_flags,
@@ -374,4 +416,6 @@ namespace HTFix {
         flushCache(targetMethod);
         return 1;
     }
+
+
 }
